@@ -1,0 +1,29 @@
+@import './fonts/fonts.scss', './mixins/mixin.scss',
+  './variables/variables.scss', './reset/reset.scss', './components/card.scss',
+  './components/cards.scss', './atoms/button.scss', './atoms/input.scss',
+  './atoms/input.scss', './components/header.scss', './atoms/select.scss',
+  './components/cart.scss', './atoms/listp.scss', './atoms/banner.scss',
+  './components/linkproduct.scss', './components/component.scss',
+  './components/title.scss', './components/minibanner.scss',
+  './components/cardv2.scss', './components/cardsv2.scss', './atoms/titlep.scss';
+.main {
+  // background: $background;
+  // height: 200vh;
+  font-family: Centranube;
+  // height: 100vh;çç
+  // @include flex(column, nowrap, center, center, 2em);
+  // @include flex(column, nowrap, center, center, 2em);
+  // height: 100vh;
+  background: $background;
+  &__div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+  }
+  &__container {
+    @include flex(column, nowrap, center, center, 2em);
+    width: 100%;
+    max-width: 35em;
+  }
+}

@@ -1,0 +1,114 @@
+.header {
+  @include flex(column, nowrap, center, center, 1em);
+  width: 100%;
+  background: #000;
+  &__container {
+    width: 100%;
+    @include flex(column, nowrap, center, center, 0em);
+  }
+  &__top {
+    @include flex(row, nowrap, space-between, center, 1em);
+    width: 100%;
+    max-width: 1170px;
+    height: 7em;
+    // background: red;
+  }
+  &__bottom {
+    width: 100%;
+    max-width: 1170px;
+    padding: 0.3em 0;
+    @include flex(row, nowrap, space-between, center, 1em);
+  }
+  &__nav {
+    @include flex(row, nowrap, space-between, center, 0.3em);
+    position: relative;
+  }
+  &__products {
+    background: #fff;
+    margin: 0 0.5em 0 0;
+    color: $color-drop-gray;
+    width: 13em;
+    height: 3em;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border: 0.15em solid #000;
+    box-sizing: content-box;
+    border-bottom: none;
+    &--list {
+      z-index: 50;
+      position: absolute;
+      border: 0.15em solid #000;
+      border-top: none;
+      box-sizing: content-box;
+      top: 3em;
+      left: 0;
+      padding: 0.8em 0;
+      background: #fff;
+      width: inherit;
+      // display: none;
+    }
+    &:hover div span i {
+      color: #000;
+    }
+  }
+  &__products i {
+    color: $color-drop-gray;
+  }
+  &__brands {
+    position: relative;
+    // width: 150px;
+    background: $color-li;
+    color: #fff;
+  }
+
+  &__input {
+    // flex-grow: 1;
+    flex-basis: 32em;
+    // width: 40em;
+  }
+  &__wsp {
+    @include flex(column, nowrap, center, center, 0.1em);
+  }
+  &__number {
+    font-size: 1.3em;
+    font-weight: bolder;
+  }
+  &__links {
+    @include flex(row, nowrap, center, center, 0.3em);
+  }
+  &__link {
+    height: 2.5em;
+    padding: 0 0.6em;
+    border-radius: 0.2em;
+    background: $color-li;
+    @include flex(row, nowrap, center, center, 1em);
+    cursor: pointer;
+    &:hover {
+      background: #fff;
+      color: #000;
+    }
+  }
+  &__icons {
+    @include flex(row, nowrap, center, center, 0.2em);
+  }
+  &__list {
+    width: 100%;
+  }
+  &__stuffed {
+    height: 0.6em;
+    width: 17em;
+    background: transparent;
+    position: absolute;
+    top: 100%;
+  }
+}
+[data-list='true'] {
+  top: 3.15em;
+  border: none;
+  height: 20em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 17em;
+  box-shadow: -1px 4px 10px 2px $color-drop-gray;
+}

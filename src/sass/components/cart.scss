@@ -1,0 +1,32 @@
+.cart {
+  position: relative;
+  cursor: pointer;
+  width: 2.8em;
+  height: 2.8em;
+  border-radius: 0.2em;
+  @include flex(row, nowrap, center, center, 1em);
+  &:hover {
+    background: $color-li;
+  }
+  &:hover .cart__count {
+    background: #fff;
+    color: #000;
+    font-weight: bolder;
+  }
+  &__count {
+    position: absolute;
+    top: -1em;
+    right: -1em;
+    font-size: 0.7em;
+    width: 1.5em;
+    height: 1.5em;
+    background: #000;
+    border-radius: 50%;
+    font-weight: bolder;
+    @include flex(row, nowrap, center, center, 1em);
+  }
+  &__icon {
+    position: relative;
+    width: 1.2em;
+  }
+}

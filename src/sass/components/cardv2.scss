@@ -1,0 +1,38 @@
+.cardv2 {
+  position: relative;
+  width: 100%;
+  color: $color-dark;
+  height: 6.8em;
+  background: #fff;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+  padding: 0 0.4em;
+  &:hover {
+    background: $background;
+  }
+  @include flex(row, nowrap, flex-start, flex-start, 0.1em);
+  &__image {
+    cursor: pointer;
+    width: 6.5em;
+    height: 6.5em;
+    mix-blend-mode: multiply;
+  }
+  &__p {
+    font-size: 0.8em;
+    flex-grow: 1;
+    height: 100%;
+    @include flex(column, nowrap, space-between, flex-start, 0.1em);
+    padding: 0.7em 0.5em;
+  }
+  &__price {
+    @include flex(column, nowrap, flex-start, flex-start, 0.4em);
+  }
+  &__count {
+    font-size: 1.4em;
+  }
+  &__quotes {
+    color: $color-quotes;
+  }
+  &__quote {
+    font-weight: bold;
+  }
+}

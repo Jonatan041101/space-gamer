@@ -1,0 +1,44 @@
+.listp {
+  color: $color-dark;
+  background: #fff;
+  width: inherit;
+  position: relative;
+  // &:hover {
+  //   background: $color-hover--list;
+  // }
+  &__list {
+    height: 2.5em;
+    font-size: 0.9em;
+    padding: 0 0.8em;
+    width: 100%;
+    @include flex(row, nowrap, space-between, center, 0);
+    &:hover {
+      background: $color-hover--list;
+    }
+  }
+  &__i {
+    width: 1em;
+    transform: rotate(-90deg);
+  }
+  &__ul {
+    position: absolute;
+    padding: 0.5em 0;
+    background: #fff;
+    top: 0;
+    left: 100%;
+    width: inherit;
+    z-index: 1;
+    box-shadow: -2px 0px 5px 1px #3d464d;
+  }
+  &__none {
+    display: none;
+  }
+  &__sub {
+    &:hover > a > .listp__none {
+      display: block;
+    }
+  }
+  &__sub a {
+    width: 100%;
+  }
+}

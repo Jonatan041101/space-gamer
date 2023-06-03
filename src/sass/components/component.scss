@@ -1,0 +1,21 @@
+.component {
+  background: transparent;
+  font-size: clamp(13px, 1px + 1.8vw, 16px);
+  &__link {
+    background: #fff;
+    color: #000;
+    @include flex(column, nowrap, center, center, 0.4em);
+    flex-grow: 1;
+    height: 8em;
+    border: 3px solid $background;
+    // max-width: 10em;
+    width: 12em;
+    max-width: 12.5em;
+  }
+  &__image {
+    width: 4.7em;
+    height: 4.7em;
+  }
+  &__span {
+  }
+}

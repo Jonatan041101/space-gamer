@@ -1,0 +1,15 @@
+.button {
+  width: 100%;
+  background: #000;
+  border-radius: 0.2em;
+  color: #fff;
+  height: 100%;
+  @include flex(row, nowrap, center, center, 0.5em);
+  cursor: pointer;
+  &:hover {
+    background: $color-dark;
+  }
+  &__btn {
+    font-size: 0.8em;
+  }
+}

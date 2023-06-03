@@ -1,0 +1,128 @@
+.card {
+  background: #fff;
+  width: 200px;
+  box-sizing: content-box;
+  padding: 1em 0;
+  color: #000;
+  position: relative;
+  @include flex(column, nowrap, center, flex-start, 1em);
+  box-shadow: 0 0 0.2em $color-dark;
+  &:hover .card__div {
+    background: #e5e5e5;
+  }
+  &:hover .card__div > .card__i {
+    background: #e5e5e5;
+    color: $color-dark;
+  }
+  &:hover .card__div > .card__i::before {
+    background: #e5e5e5;
+  }
+  &:hover .card__div > .card__i::after {
+    background: #e5e5e5;
+  }
+  &__img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+  &__image {
+    object-fit: scale-down;
+    transition: 0.5s ease;
+    &:hover {
+      transform: scale(1.45);
+      transform-origin: center;
+    }
+  }
+  &__h2 {
+    text-align: left;
+    line-height: 1.3;
+    font-size: 0.75em;
+    height: 2.25em;
+    padding: 0 1em;
+  }
+  &__price {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $color-dark;
+  }
+  &__i {
+    width: 1.2em;
+    height: 1.2em;
+    color: #a2a5a7;
+    background: #fff;
+  }
+  &__i::before {
+    content: '';
+    position: absolute;
+    width: 0.2em;
+    height: 1.1em;
+    background: #fff;
+    inset: 0.35em 0 0 0;
+    margin: 0 auto;
+  }
+  &__i::after {
+    content: '';
+    position: absolute;
+    width: 1.2em;
+    height: 0.2em;
+    background: #fff;
+    inset: 0 0 0 0;
+    margin: auto;
+  }
+  &__description {
+    font-size: 0.7em;
+    @include flex(column, nowrap, flex-start, flex-start, 0.3em);
+    box-sizing: content-box;
+    padding: 0 1em 1em;
+  }
+  &__stock {
+    font-weight: bold;
+    color: #28a745;
+    &--low {
+      color: #fb9e0b;
+    }
+    &--non {
+      color: $green;
+    }
+  }
+  &__quotes {
+    text-transform: uppercase;
+    color: $color-quotes;
+    font-weight: 500;
+    &--value {
+      font-weight: bold;
+    }
+  }
+  &__add {
+    width: 100%;
+    height: 1.5em;
+    padding: 0 1em;
+    display: none;
+  }
+  &:hover > .card__add {
+    display: block;
+  }
+}
+#card__divid {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 1.8em;
+  height: 1.8em;
+  @include flex(row, nowrap, center, center, 0);
+  &:hover {
+    background: $color-dark;
+  }
+  &:hover > .card__i {
+    background: $color-dark;
+    color: #fff;
+  }
+  &:hover > .card__i::before {
+    background: $color-dark;
+  }
+  &:hover > .card__i::after {
+    background: $color-dark;
+  }
+}

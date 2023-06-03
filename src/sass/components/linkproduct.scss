@@ -1,0 +1,36 @@
+.linkproduct {
+  @include flex(row, wrap, center, center, 0);
+  &__section {
+    @include flex(row, wrap, center, center, 0);
+    max-width: 1170px;
+    width: 100%;
+    background: #fff;
+    font-size: clamp(11px, 1px + 1.8vw, 16px);
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+  }
+  &__article {
+    @include flex(column, nowrap, center, center, 1em);
+    background: #fff;
+    color: #000;
+    width: 15em;
+    flex-grow: 1;
+    height: 20em;
+    border: 3px solid $background;
+    &:hover {
+      background: $background;
+    }
+  }
+  &__link {
+    @include flex(column, nowrap, center, center, 0.8em);
+  }
+  &__image {
+    width: 14em;
+    height: 14em;
+    mix-blend-mode: multiply;
+  }
+  &__span {
+  }
+  &__p {
+    color: $color-drop-gray;
+  }
+}

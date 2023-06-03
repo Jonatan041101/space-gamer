@@ -1,0 +1,32 @@
+.select {
+  @include flex(row, nowrap, space-between, center, 0.3em);
+  // background: $color-li;
+  background: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+  &:hover > .select__i {
+    color: #000;
+  }
+  &__bar {
+    width: 1em;
+    color: inherit;
+  }
+  &__text {
+    color: inherit;
+    @include flex(row, nowrap, space-between, center, 0.7em);
+  }
+  &__i {
+    color: #fff;
+    width: 0.7em;
+    transform: rotate(0);
+    transition: 0.5s;
+  }
+  &__rotate {
+    transform: rotate(180deg);
+  }
+}

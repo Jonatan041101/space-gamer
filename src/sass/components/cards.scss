@@ -1,0 +1,12 @@
+.cards {
+  max-width: 1070px;
+  overflow: hidden;
+
+  &__container {
+    width: 2360px;
+    @include flex(row, nowrap, flex-start, flex-start, 0.99em);
+    cursor: grab;
+    padding: 0.4em 0.1em;
+    height: 400px;
+  }
+}
