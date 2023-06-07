@@ -3,28 +3,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import SquareIcon from './SquareIcon';
+import { Products } from '@/__generated__/graphql-types';
+import { parsePriceValueMoneyARS } from '@/utils/parses';
 
-export default function CardV2() {
+interface Props {
+  product: Products;
+}
+
+export default function CardV2({ product }: Props) {
+  const IMAGE = product.image ? product.image[0]?.image ?? '' : '';
+  const QUOTES = product.quotes && product.quotes[3];
   return (
     <article className="cardv2">
       <SquareIcon />
       <Link href="/">
         <Image
           className="cardv2__image"
-          src={
-            'https://res.cloudinary.com/damjxqb5f/image/upload/v1685808561/1058-producto-b450mplus-8950_uq2nf6.jpg'
-          }
+          src={IMAGE}
           alt="Producto en venta"
           width={200}
           height={200}
         />
       </Link>
       <div className="cardv2__p">
-        <h3> Motherboard Asus Tuf Gaming B450M-Plus II</h3>
+        <h3>{product.name}</h3>
         <div className="cardv2__price">
-          <p className="card__price">$66.204</p>
+          <p className="card__price">
+            {parsePriceValueMoneyARS(product.price)}
+          </p>
           <p className="cardv2__quotes">
-            12 CUOTAS DE <span className="cardv2__quote">$9.839</span>
+            {QUOTES?.name} de{' '}
+            <span className="cardv2__quote">
+              {parsePriceValueMoneyARS(QUOTES?.priceCuote)}
+            </span>
           </p>
         </div>
       </div>

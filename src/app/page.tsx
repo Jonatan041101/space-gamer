@@ -1,4 +1,3 @@
-import Header from '@/components/Header';
 import Carruzel from '@/components/Carruzel/Carruzel';
 import Cards from '@/components/Cards';
 import LinksProducts from '@/components/LinksProducts';
@@ -6,11 +5,11 @@ import LinksComponentsPc from '@/components/LinksComponentsPc';
 import Title from '@/components/Title';
 import MiniBanner from '@/components/MiniBanner';
 import CardsV2 from '@/components/CardsV2';
+import CarruzelBrand from '@/components/CarruzelBrand/CarruzelBrand';
 
 export default function Home() {
   return (
     <main className="main">
-      <Header />
       <div className="main__div">
         <Carruzel />
         <LinksProducts />
@@ -18,6 +17,7 @@ export default function Home() {
         <Title />
         <Cards />
         <MiniBanner />
+        <CarruzelBrand />
         <CardsV2 />
       </div>
     </main>

@@ -5,7 +5,14 @@
   './components/cart.scss', './atoms/listp.scss', './atoms/banner.scss',
   './components/linkproduct.scss', './components/component.scss',
   './components/title.scss', './components/minibanner.scss',
-  './components/cardv2.scss', './components/cardsv2.scss', './atoms/titlep.scss';
+  './components/cardv2.scss', './components/cardsv2.scss', './atoms/titlep.scss',
+  './atoms/cardf.scss', './components/footer.scss', './atoms/listf.scss',
+  './atoms/method.scss', './components/sliderbrand.scss', './atoms/squaret.scss',
+  './components/productd.scss', './atoms/slider.scss', './atoms/slides.scss',
+  './components/modal.scss', './atoms/linkcategory.scss',
+  './atoms/btnchild.scss', './components/quotesdes.scss', './atoms/table.scss',
+  './atoms/priced.scss', './atoms/listoption.scss', './atoms/envios.scss',
+  './atoms/count.scss';
 .main {
   // background: $background;
   // height: 200vh;
@@ -26,4 +33,7 @@
     width: 100%;
     max-width: 35em;
   }
+}
+.body {
+  font-family: Centranube;
 }

@@ -1,0 +1,44 @@
+.count {
+  &__p {
+  }
+  &__container {
+    @include flex(row, nowrap, flex-start, flex-start, 0.5em);
+  }
+  &__div {
+    @include flex(row, nowrap, space-between, center, 0.5em);
+    background: #fff;
+    border: 1px solid gray;
+    height: 3em;
+    flex-grow: 1;
+  }
+  &__menos {
+    height: 100%;
+    width: 1em;
+    color: $color-drop-gray;
+    font-size: 1.2em;
+    &:hover {
+      color: #000;
+      background: $color-drop-gray;
+    }
+  }
+  &__count {
+  }
+  &__more {
+    height: 100%;
+    width: 1em;
+    color: $color-drop-gray;
+    font-size: 1.2em;
+    &:hover {
+      color: #000;
+      background: $color-drop-gray;
+    }
+  }
+  &__add {
+    flex-grow: 1;
+    height: 3em;
+    background: #000;
+    color: #fff;
+    // font-size: 0.8em;
+    // padding: 1em 3em;
+  }
+}

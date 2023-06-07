@@ -1,0 +1,25 @@
+.priced {
+  color: #fff;
+  background: #000;
+  font-weight: bold;
+  height: 110px;
+  padding: 0.7em;
+  @include flex(column, nowrap, center, center, 0.5em);
+  &__all {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+  }
+  &__div {
+    font-size: 1.5em;
+    @include flex(column, nowrap, center, flex-start, 0.4em);
+  }
+  &__p {
+    font-size: 0.5em;
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+}

@@ -1,0 +1,10 @@
+.sliderbrand {
+  @include flex(row, nowrap, flex-start, flex-start, 2em);
+  overflow: scroll;
+  background: #fff;
+  padding: 0 0.5em;
+  &__image {
+    object-fit: scale-down;
+    mix-blend-mode: multiply;
+  }
+}

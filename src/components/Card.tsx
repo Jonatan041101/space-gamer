@@ -1,10 +1,11 @@
 import { Products } from '@/__generated__/graphql-types';
 import Button from '@/atoms/Button';
-import Icons from '@/atoms/Icons';
 import { parsePriceValueMoneyARS } from '@/utils/parses';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import SquareIcon from './SquareIcon';
+import Stock from '@/atoms/Stock';
 
 interface Props {
   product: Products;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function Card({ product, isAbilitedClick }: Props) {
+  const router = useRouter();
   // Variables para JSX
   const image = product?.image ? product?.image[0]?.image : '';
   const IMAGE = image ?? '';
@@ -21,7 +23,7 @@ export default function Card({ product, isAbilitedClick }: Props) {
   const handleAddToCar = () => {};
   const handleLink = () => {
     if (isAbilitedClick) {
-      console.log('HOLA', product.name);
+      router.push(`/product/${product.name}`);
     }
   };
   return (
@@ -39,13 +41,7 @@ export default function Card({ product, isAbilitedClick }: Props) {
       </div>
       <h2 className="card__h2">{product.name}</h2>
       <div className="card__description">
-        {STOCK > 0 && STOCK <= 5 && (
-          <span className="card__stock card__stock--low">STOCK BAJO</span>
-        )}
-        {STOCK > 5 && <span className="card__stock ">DISPONIBLE</span>}
-        {STOCK === 0 && (
-          <span className="card__stock card__stock--non">NO DISPONIBLE</span>
-        )}
+        <Stock STOCK={STOCK} />
         <p className="card__price">{PRICE}</p>
         <p className="card__quotes">
           {QUOTES?.name} de{' '}

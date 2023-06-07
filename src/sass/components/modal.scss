@@ -1,0 +1,11 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  @include flex(row, nowrap, center, center, 0);
+  z-index: 15;
+  background: #00000099;
+  backdrop-filter: blur(0.5em);
+}

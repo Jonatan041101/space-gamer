@@ -11,6 +11,9 @@
     // max-width: 10em;
     width: 12em;
     max-width: 12.5em;
+    &:hover {
+      filter: contrast(1.2);
+    }
   }
   &__image {
     width: 4.7em;

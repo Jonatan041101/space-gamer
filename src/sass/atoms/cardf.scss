@@ -1,0 +1,20 @@
+.cardf {
+  width: 360px;
+  color: $color-li;
+  @include flex(column, nowrap, center, center, 0.4em);
+  height: 15em;
+  flex-grow: 1;
+  border: 0.15em solid $color-li;
+  &__image {
+    object-fit: scale-down;
+  }
+  &__h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  &__p {
+    font-size: 1em;
+    width: 14em;
+    text-align: center;
+  }
+}

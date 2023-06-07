@@ -1,0 +1,17 @@
+.quotesdes {
+  flex-grow: 1;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  &__h2 {
+    font-size: 1.7em;
+    font-weight: bold;
+  }
+  &__child {
+    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
+  }
+  &__buttons {
+    @include flex(column, nowrap, flex-start, flex-start, 0.4em);
+  }
+}

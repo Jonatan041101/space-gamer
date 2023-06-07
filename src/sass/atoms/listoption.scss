@@ -1,0 +1,20 @@
+.listoption {
+  @include flex(row, nowrap, center, center, 2em);
+  background: #fff;
+  @include shadow;
+  height: 6em;
+  cursor: pointer;
+  &__image {
+    width: 2.6em;
+    height: 2.6em;
+  }
+  &__div {
+    @include flex(column, nowrap, flex-start, flex-start, 0.2em);
+  }
+  &__h3 {
+    font-weight: bold;
+  }
+  &__p {
+    font-size: 0.85em;
+  }
+}

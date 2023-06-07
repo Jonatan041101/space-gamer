@@ -1,0 +1,11 @@
+.btnchild {
+  background: #eeeeee;
+  @include flex(column, nowrap, flex-start, flex-start, 0.2em);
+  font-size: 0.8em;
+  padding: 0.4em 0.7em;
+  border-radius: 0.1em;
+  text-transform: capitalize;
+  &__name {
+    color: gray;
+  }
+}

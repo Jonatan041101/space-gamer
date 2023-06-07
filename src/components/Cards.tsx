@@ -8,7 +8,8 @@ import Title from './Title';
 const MAX_WIDTH = 1070;
 const TRANSLATE = -1290;
 export default function Cards() {
-  const { data, loading } = useQuery<GetProductsQuery>(GET_PRODUCTS);
+  const { data } = useQuery<GetProductsQuery>(GET_PRODUCTS);
+
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);

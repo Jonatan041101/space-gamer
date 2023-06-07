@@ -5,6 +5,8 @@ import '../css/main.css';
 import { Inter } from 'next/font/google';
 import { client } from '@/utils/apollo';
 import { useBearStore } from '@/store/store';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -21,10 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className}
+        // className={inter.className}
+        className="body"
         onClick={() => handleViewListProduct(false)}
       >
-        <ApolloProvider client={client}>{children}</ApolloProvider>
+        <ApolloProvider client={client}>
+          <Header />
+          {children}
+          <Footer />
+        </ApolloProvider>
       </body>
     </html>
   );

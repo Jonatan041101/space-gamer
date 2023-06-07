@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  @include flex(row, wrap, center, center, 0.7em);
+  background: #fff;
+  padding: 2em 0;
+  &__section {
+    width: 97%;
+    max-width: 1170px;
+    padding: 0.5em 0;
+    @include flex(row, wrap, center, center, 0.7em);
+  }
+}

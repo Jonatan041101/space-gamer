@@ -1,0 +1,67 @@
+.productd {
+  background: $background;
+  color: $color-li;
+  width: 100%;
+  @include flex(column, nowrap, center, center, 0.5em);
+
+  &__detail {
+    width: 100%;
+    max-width: 1170px;
+    padding: 1em 0.5em;
+    @include flex(column, nowrap, flex-start, flex-start, 1.5em);
+  }
+  &__images {
+    @include flex(column, nowrap, flex-start, flex-start, 0.7em);
+    width: 100%;
+    max-width: 20em;
+  }
+  &__article {
+    @include flex(row, nowrap, flex-start, center, 0);
+    background: #fff;
+    width: 100%;
+    max-width: 20em;
+    height: 22em;
+    position: relative;
+    // box-shadow: 0 0 0.2em #3d464d;
+    @include shadow;
+  }
+  &__i {
+    height: 2.4em;
+    width: 2.4em;
+    position: absolute;
+    top: 0em;
+    right: 0em;
+    cursor: pointer;
+    z-index: 5;
+    @include flex(row, nowrap, center, center, 0);
+    &:hover {
+      background: $color-drop-gray;
+    }
+    &:hover .productd__zoom {
+      color: $color-li;
+    }
+  }
+  &__zoom {
+    width: 1.3em;
+    height: 1.3em;
+
+    color: $color-drop-gray;
+  }
+
+  &__img {
+  }
+  &__image {
+    width: 320px;
+    object-fit: scale-down;
+  }
+  &__slides {
+    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
+    width: 100%;
+    max-width: 20em;
+  }
+  &__flex {
+    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
+    width: 100%;
+    // background: red;
+  }
+}

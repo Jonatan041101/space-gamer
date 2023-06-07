@@ -1,0 +1,17 @@
+.linkcategory {
+  border: 1px solid #e5e5e5;
+  color: $color-li;
+  text-transform: capitalize;
+  font-weight: 500;
+  display: inline-block;
+  padding: 0.4em 0.7em;
+  border-radius: 1.5px;
+  font-size: 0.8em;
+  &:hover {
+    color: #fff;
+    background: $color-dark;
+  }
+  &__container {
+    @include flex(row, nowrap, flex-start, flex-start, 0.3em);
+  }
+}

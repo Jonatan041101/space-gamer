@@ -1,0 +1,13 @@
+.envios {
+  background: #fff;
+  @include shadow;
+  height: 3.5em;
+  padding: 0.4em 1em;
+  @include flex(column, nowrap, center, flex-start, 0.4em);
+  &__h3 {
+    color: gray;
+    font-size: 0.75em;
+  }
+  &__p {
+  }
+}

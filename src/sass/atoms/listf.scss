@@ -1,0 +1,34 @@
+.listf {
+  width: 100%;
+  @include flex(row, wrap, flex-start, flex-start, 0.5em);
+  padding: 0 0.6em;
+  color: $color-li;
+  max-width: 1170px;
+  &__logo {
+    align-self: center;
+  }
+  &__h3 {
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+  &__ul {
+    font-size: 0.9em;
+    width: 450px;
+    flex-grow: 1;
+    @include flex(column, wrap, flex-start, flex-start, 0.4em);
+  }
+  &__li {
+    @include flex(row, nowrap, flex-start, flex-start, 0.5em);
+  }
+  &__i {
+    width: 1em;
+    height: 1em;
+  }
+  &__span {
+  }
+  &__footer {
+    width: 150px;
+    flex-grow: 1;
+    text-transform: capitalize;
+  }
+}

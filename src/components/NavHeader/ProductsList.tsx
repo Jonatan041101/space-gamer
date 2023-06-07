@@ -1,14 +1,16 @@
 'use client';
 import Select from '@/atoms/Select';
 import React, { useEffect, useRef } from 'react';
-import { liProductsMap } from './listMap';
 import { useBearStore } from '@/store/store';
-import AnimationList from './AnimationList';
-
+import AnimationList, { CategoryBrand } from './AnimationList';
+import useCategory from '@/hooks/useCategory';
 export default function ProductsList() {
+  const data = useCategory();
+
   const { handleViewListProduct, viewListProduct } = useBearStore(
     (state) => state
   );
+
   const refIcon = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (viewListProduct) {
@@ -40,7 +42,12 @@ export default function ProductsList() {
       <div className="header__list" ref={refIcon} onClick={handleViewProducts}>
         <Select text="Productos" icon="down" barIcon="bar" width="1em" />
       </div>
-      <AnimationList list={liProductsMap} viewListProduct={viewListProduct} />
+      {data && (
+        <AnimationList
+          list={data.category as CategoryBrand[]}
+          viewListProduct={viewListProduct}
+        />
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import ListProducts from '../ListProducts';
 import { LiProducts } from '@/types/types';
+import { Category } from '@/__generated__/graphql-types';
 export const variantsOpacity = {
   show: {
     opacity: 1,
@@ -11,9 +12,10 @@ export const variantsOpacity = {
     opacity: 0,
   },
 };
+export type CategoryBrand = Category & { image?: string };
 interface Props {
   viewListProduct: boolean;
-  list: LiProducts[];
+  list: CategoryBrand[];
   brand?: boolean;
 }
 export default function AnimationList({
@@ -33,9 +35,10 @@ export default function AnimationList({
           className="header__products--list"
           data-list={brand}
         >
-          {list.map((li, i) => (
-            <ListProducts key={`${li.id}-${i}`} index={i} li={li} />
-          ))}
+          {list &&
+            list.map((li, i) => (
+              <ListProducts key={`${li.id}-${i}`} index={i} li={li} />
+            ))}
         </motion.ul>
       )}
     </AnimatePresence>

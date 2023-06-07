@@ -14,7 +14,6 @@ export default function useSliderMouse() {
   const [banner, setBanner] = useState<Banner[]>([]);
   const [currentTranslate, setCurrentTranslate] = useState<number>(0);
   const [idImage, setIdImage] = useState<string>('');
-  console.log({ banner });
 
   useEffect(() => {
     const idTime = setTimeout(
@@ -37,7 +36,6 @@ export default function useSliderMouse() {
   const changeBanner = (newListBanner: Banner[]) => {
     setBanner(newListBanner);
     setIdImage(newListBanner[1].id);
-    console.log('hola ');
   };
   const handleMoveCarruzel = (evt: React.MouseEvent) => {
     setIsDragging(true);

@@ -24,14 +24,14 @@
 
 // export default config;
 module.exports = {
-  schema:   'http://localhost:3500/graphql',
+  schema: 'http://localhost:3500/graphql',
   documents: 'src/**/!(*.d).{ts,tsx}',
   generates: {
     './src/__generated__/graphql-types.ts': {
-      plugins:['typescript','typescript-operations']
+      plugins: ['typescript', 'typescript-operations'],
     },
     './src/__generated__/graphql.schema.json': {
-      plugins:['introspection']
-    }
+      plugins: ['introspection'],
+    },
   },
-}
+};

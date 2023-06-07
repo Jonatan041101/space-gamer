@@ -1,0 +1,23 @@
+.squaret {
+  @include flex(row, nowrap, flex-start, flex-start, 0);
+  width: 100%;
+  &__links {
+    @include flex(row, nowrap, flex-start, flex-start, 0.8em);
+  }
+  &__link {
+    background: #000;
+    color: #fff;
+    transform: skew(-15deg);
+    border-radius: 0.15em;
+    padding: 0.25em;
+  }
+  &__p {
+    transform: skew(15deg);
+    text-align: center;
+    font-size: 0.85em;
+  }
+}
+[data-name='true'] {
+  background: transparent;
+  color: $color-li;
+}
