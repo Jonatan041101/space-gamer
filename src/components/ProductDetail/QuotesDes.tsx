@@ -12,7 +12,6 @@ interface Props {
   quotes?: Products;
 }
 export default function QuotesDes({ quotes }: Props) {
-  console.log({ quotes });
   const STOCK = quotes?.stock?.count ?? 0;
   const listOptions: ListModal[] = [
     {

@@ -1,0 +1,48 @@
+.viewcart {
+  @include flex(column, nowrap, center, center, 2em);
+  width: 100%;
+  padding: 1em;
+  height: 100%;
+  color: $color-li;
+  &__cero {
+    padding: 1.5em 0;
+    width: 100%;
+    @include flex(column, nowrap, center, center, 0em);
+  }
+  &__total {
+    @include flex(row, nowrap, space-between, center, 0);
+    width: 100%;
+  }
+  &__span {
+    font-weight: bold;
+  }
+  &__price {
+    font-weight: 100;
+  }
+  &__buttons {
+    @include flex(row, nowrap, space-between, center, 0.5em);
+    width: 100%;
+  }
+  &__btn {
+    padding: 0.7em 0;
+    flex-grow: 1;
+    border-radius: 0.2em;
+    // font-weight: bold;
+  }
+  &__btncart {
+    background: #f0f0f0;
+    color: #3d464d;
+    &:hover {
+      background: $color-dark;
+      color: #fff;
+    }
+  }
+  &__btnend {
+    background: #000;
+    color: #fff;
+    &:hover {
+      background: $color-dark;
+      color: #fff;
+    }
+  }
+}

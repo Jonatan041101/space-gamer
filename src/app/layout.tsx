@@ -19,13 +19,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { handleViewListProduct } = useBearStore((state) => state);
+  const { handleViewListProduct, handleViewCart } = useBearStore(
+    (state) => state
+  );
+  const closeAllModal = () => {
+    handleViewListProduct(false);
+    handleViewCart(false);
+  };
   return (
     <html lang="en">
       <body
         // className={inter.className}
         className="body"
-        onClick={() => handleViewListProduct(false)}
+        onClick={closeAllModal}
       >
         <ApolloProvider client={client}>
           <Header />

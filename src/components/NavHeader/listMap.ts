@@ -1,12 +1,12 @@
 import { LiProducts, LinksHeader } from '@/types/types';
 
 export const linksHeader: LinksHeader[] = [
-  {
-    id: 100,
-    text: 'Contacto',
-    link: '/',
-  },
-  { id: 101, text: 'Mis Pedidos', link: '/' },
+  // {
+  //   id: 100,
+  //   text: 'Contacto',
+  //   link: '/',
+  // },
+  // { id: 101, text: 'Mis Pedidos', link: '/' },
   { id: 102, text: 'Arma tu Pc', link: '/' },
 ];
 // export const liProductsMap: LiProducts[] = [

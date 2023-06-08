@@ -1,10 +1,12 @@
 'use client';
 import {
+  Description,
   GetProductDetailQuery,
   Image,
   Products,
 } from '@/__generated__/graphql-types';
 import LinksPrevProduct from '@/components/ProductDetail/LinksPrevProduct';
+import OptionsList from '@/components/ProductDetail/OptionsList';
 import PriceDetail from '@/components/ProductDetail/PriceDetail';
 import ProductDetail from '@/components/ProductDetail/ProductDetail';
 import QuotesDes from '@/components/ProductDetail/QuotesDes';
@@ -36,6 +38,9 @@ export default function ProductQuery({ params }: Props) {
           <QuotesDes quotes={data?.getProduct as Products} />
           <PriceDetail price={data?.getProduct?.price} />
         </div>
+        <OptionsList
+          description={data?.getProduct?.description as Description}
+        />
       </div>
     </div>
   );

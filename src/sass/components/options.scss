@@ -1,0 +1,44 @@
+.options {
+  width: 100%;
+  max-width: 1170px;
+  &__description {
+    width: 100%;
+    background-color: #fff;
+    color: $color-li;
+    @include shadow;
+    font-size: 1em;
+    line-height: 1.5;
+    padding: 2em 2.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+  }
+  &__title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  &__comment {
+    @include flex(row, nowrap, space-between, center, 0);
+    width: 100%;
+  }
+  &__flex {
+    flex-grow: 2;
+    // width: 100%;
+    font-size: 1.2em;
+    font-weight: bold;
+    @include flex(column, nowrap, center, center, 0);
+  }
+  &__stars {
+    font-size: 2em;
+  }
+  &__btn {
+    background: #000;
+    color: #fff;
+    align-self: flex-start;
+    font-size: 1.1em;
+    padding: 1em;
+    &:hover {
+      background: $color-dark;
+    }
+  }
+}

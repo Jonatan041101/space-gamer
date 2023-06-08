@@ -1,0 +1,32 @@
+.cartslide {
+  background: #fff;
+  color: $color-li;
+  height: 100%;
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  &__top {
+    @include flex(row, nowrap, space-between, center, 0);
+    padding: 1em;
+    border-bottom: 1px solid #ebebeb;
+  }
+  &__title {
+    font-weight: bold;
+  }
+  &__i {
+    width: 0.8em;
+    cursor: pointer;
+    color: $color-drop-gray;
+  }
+  &__products {
+    flex-grow: 3;
+    width: 100%;
+    padding: 0.6em;
+    // background: red;
+  }
+  &__bottom {
+    // height: 10em;
+    border-top: 1px solid #ebebeb;
+    // background: blue;
+  }
+}

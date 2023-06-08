@@ -60,7 +60,7 @@
     max-width: 20em;
   }
   &__flex {
-    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
+    @include flex(row, wrap, flex-start, flex-start, 0.4em);
     width: 100%;
     // background: red;
   }

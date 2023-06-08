@@ -36,3 +36,5 @@ export const mercadoPago =
   'https://res.cloudinary.com/damjxqb5f/image/upload/v1685848036/mercadopago_j3tlfm.png';
 export const visa =
   'https://res.cloudinary.com/damjxqb5f/image/upload/v1685848033/tarjetas_gi3yfp.png';
+export const cart =
+  'https://res.cloudinary.com/damjxqb5f/image/upload/v1686196960/empty-cart_f2er4l.png';

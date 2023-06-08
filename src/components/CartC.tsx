@@ -1,15 +1,27 @@
+'use client';
 import Icons from '@/atoms/Icons';
 import React from 'react';
+import Cart from './Cart/Cart';
+import { useBearStore } from '@/store/store';
 
 interface Props {}
 
 export default function CartC({}: Props) {
+  const { viewCart, handleViewCart } = useBearStore((state) => state);
+  console.log({ viewCart });
+  const handleOpenModalCart = (evt: React.MouseEvent) => {
+    evt.stopPropagation();
+    handleViewCart(true);
+  };
   return (
-    <li className="cart">
-      <i className="cart__icon">
-        <div className="cart__count">0</div>
-        <Icons icon="cart" />
-      </i>
-    </li>
+    <>
+      <li className="cart" onClick={handleOpenModalCart}>
+        <i className="cart__icon">
+          <div className="cart__count">0</div>
+          <Icons icon="cart" />
+        </i>
+      </li>
+      {viewCart && <Cart />}
+    </>
   );
 }

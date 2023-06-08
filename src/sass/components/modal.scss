@@ -9,3 +9,6 @@
   background: #00000099;
   backdrop-filter: blur(0.5em);
 }
+[data-modal='true'] {
+  @include flex(row, nowrap, flex-end, flex-end, 0);
+}
