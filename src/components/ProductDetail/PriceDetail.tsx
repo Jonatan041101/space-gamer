@@ -5,9 +5,10 @@ import Wsp from './Wsp';
 import Envios from './Envios';
 import Price from './Price';
 import Count from './Count';
+import { Products } from '@/__generated__/graphql-types';
 
 interface Props {
-  price?: number | null;
+  product: Products;
 }
 export interface EnviosT {
   id: number;
@@ -25,12 +26,11 @@ const listEnvios: EnviosT[] = [
   { id: 1304, title: 'Envió a Domicilio (Andreani)', content: '$2999' },
 ];
 
-export default function PriceDetail({ price }: Props) {
-  const [count, setCount] = useState<number>(0);
+export default function PriceDetail({ product }: Props) {
   return (
     <div className="priced__all">
-      <Price price={price ?? 0} />
-      <Count count={count} />
+      <Price price={product?.price ?? 0} />
+      <Count product={product} />
       <Wsp />
       <section className="priced__section">
         {listEnvios.map((envio) => (

@@ -8,7 +8,6 @@ import Modal from '../Modal/Modal';
 import ImagesModal from './ImagesModal';
 
 interface Props {
-  name: string;
   image?: Image[];
 }
 

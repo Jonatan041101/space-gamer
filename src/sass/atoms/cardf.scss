@@ -5,6 +5,7 @@
   height: 15em;
   flex-grow: 1;
   border: 0.15em solid $color-li;
+  cursor: pointer;
   &__image {
     object-fit: scale-down;
   }
@@ -16,5 +17,52 @@
     font-size: 1em;
     width: 14em;
     text-align: center;
+  }
+  &__modal {
+    position: relative;
+    background: #fff;
+    color: $color-li;
+    width: 100%;
+    max-width: 500px;
+  }
+  &__i {
+    cursor: pointer;
+    width: 1.2em;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    color: $color-drop-gray;
+    &:hover {
+      color: $color-li;
+    }
+  }
+  &__container {
+    padding: 1.8em 1em;
+    @include flex(column, nowrap, center, center, 1.6em);
+  }
+  &__h2 {
+    font-size: 1.6em;
+    font-weight: bold;
+    line-height: 0.9;
+    width: 100%;
+  }
+  &__section {
+    @include flex(column, nowrap, center, center, 0.4em);
+  }
+  &__article {
+    flex-grow: 1;
+    padding: 1em;
+    width: 100%;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    @include flex(column, nowrap, center, center, 0.5em);
+  }
+  &__h4 {
+    width: 100%;
+    font-size: 0.85em;
+  }
+  &__text {
+    width: 100%;
+    color: #777f87;
   }
 }

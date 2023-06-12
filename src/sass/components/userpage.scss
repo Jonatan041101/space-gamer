@@ -1,0 +1,46 @@
+.userpage {
+  width: 100%;
+  @include flex(row, wrap, center, center, 2em);
+  &__intro {
+    width: 100%;
+    background: #fff;
+    @include view-shadow;
+    padding: 1.4em 1em;
+    max-width: 480px;
+    @include flex(column, nowrap, flex-start, flex-start, 1em);
+    height: 513px;
+    @include responsive(1030px) {
+      height: auto;
+    }
+  }
+  &__h4 {
+    font-size: 1.9em;
+    font-weight: bold;
+  }
+  &__p {
+  }
+  &__form {
+    width: 100%;
+    flex-grow: 1;
+    max-width: 480px;
+    background: #fff;
+    @include view-shadow;
+    padding: 1.4em 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  &__inputs {
+    @include flex(row, nowrap, flex-start, flex-start, 1em);
+  }
+  &__btn {
+    align-self: flex-start;
+    background: #000;
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 0.2em;
+    &:hover {
+      background: $color-dark;
+    }
+  }
+}

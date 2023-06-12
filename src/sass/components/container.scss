@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  @include flex(column, nowrap, center, center, 2.5em);
+  background: $background;
+  color: $color-li;
+  &__container {
+    width: 100%;
+    max-width: 1170px;
+    padding: 1em 0.5em;
+    @include flex(column, nowrap, flex-start, flex-start, 1.2em);
+  }
+  &__h4 {
+    font-weight: bold;
+    font-size: 1.9em;
+  }
+}

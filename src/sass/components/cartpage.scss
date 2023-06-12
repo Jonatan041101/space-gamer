@@ -1,0 +1,113 @@
+.cartpage {
+  background: $background;
+  color: $color-li;
+  padding: 1em 0.5em;
+  width: 100%;
+  @include flex(column, wrap, center, center, 0em);
+  &__page {
+    width: 100%;
+    max-width: 1170px;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+  }
+  &__h2 {
+    font-weight: bold;
+    font-size: 2em;
+  }
+  &__article {
+    border-top: 1px solid #ebebeb;
+    height: 6em;
+  }
+  &__container {
+    @include flex(row, wrap, flex-start, flex-start, 0);
+    width: 100%;
+  }
+  &__micart {
+    width: 100%;
+    @include flex(row, wrap, center, flex-start, 2em);
+  }
+  &__div {
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
+    @include responsive(1130px) {
+      max-width: 100%;
+    }
+  }
+  &__table {
+    background: #fff;
+    width: 100%;
+  }
+  &__thead {
+    height: 3em;
+    @include flex(row, nowrap, center, center, 0em);
+  }
+  &__thead {
+    height: 3em;
+    @include flex(row, nowrap, center, center, 0em);
+  }
+  &__img {
+    @include flex(row, nowrap, flex-start, center, 0.3em);
+  }
+  &__image {
+    object-fit: contain;
+  }
+  &__tr {
+    @include flex(row, nowrap, flex-start, flex-start, 0);
+    width: 100%;
+  }
+  &__trhead {
+    width: 100%;
+    @include flex(row, nowrap, center, center, 0);
+    height: 100%;
+  }
+  &__td {
+    width: 25%;
+    height: 100%;
+    @include flex(row, nowrap, center, center, 0em);
+  }
+  &__th {
+    height: 100%;
+    width: 25%;
+    @include flex(row, nowrap, center, center, 0em);
+  }
+  &__name {
+    display: block;
+    width: 7em;
+  }
+  &__total {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
+    flex-grow: 1;
+    padding: 1em 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+    @include flex(column, nowrap, center, center, 2.5em);
+  }
+  &__price {
+    @include flex(row, nowrap, flex-start, flex-start, 0);
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  &__end {
+    font-size: 1em;
+    padding: 1em 0.5em;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+  }
+  &__quotes {
+    display: flex;
+    width: 100%;
+  }
+  &__buy {
+    width: 100%;
+    max-width: 350px;
+    @include flex(row, wrap, flex-start, flex-start, 2em);
+    @include responsive(1130px) {
+      max-width: 100%;
+      flex-direction: column-reverse;
+    }
+  }
+}

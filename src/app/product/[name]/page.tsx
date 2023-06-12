@@ -22,21 +22,20 @@ interface Props {
 }
 
 export default function ProductQuery({ params }: Props) {
-  const NAME = params.name.replaceAll('%20', ' ');
+  const NAME = decodeURI(params.name);
   const { data } = useQuery<GetProductDetailQuery>(PRODUCT_DETAIL, {
     variables: { name: NAME },
   });
   return (
     <div className="productd">
       <div className="productd__detail">
-        <LinksPrevProduct nameProduct={params.name} />
+        <LinksPrevProduct
+        // nameProduct={params.name}
+        />
         <div className="productd__flex">
-          <ProductDetail
-            name={params.name}
-            image={data?.getProduct?.image as Image[]}
-          />
-          <QuotesDes quotes={data?.getProduct as Products} />
-          <PriceDetail price={data?.getProduct?.price} />
+          <ProductDetail image={data?.getProduct?.image as Image[]} />
+          <QuotesDes data={data?.getProduct as Products} />
+          <PriceDetail product={data?.getProduct as Products} />
         </div>
         <OptionsList
           description={data?.getProduct?.description as Description}

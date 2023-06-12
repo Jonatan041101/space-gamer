@@ -117,3 +117,14 @@ export const PRODUCT_DETAIL = gql`
     }
   }
 `;
+export const GET_PRODUCT_FILTER = gql`
+  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
+  query GetProductFilter($nameC: String, $nameS: String, $brand: String) {
+    getProductFilter(nameC: $nameC, nameS: $nameS, brand: $brand) {
+      ...ProductsLimit
+      brand {
+        name
+      }
+    }
+  }
+`;

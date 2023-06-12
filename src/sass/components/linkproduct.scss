@@ -29,6 +29,7 @@
     mix-blend-mode: multiply;
   }
   &__span {
+    text-transform: capitalize;
   }
   &__p {
     color: $color-drop-gray;

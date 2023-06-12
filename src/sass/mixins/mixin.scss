@@ -6,7 +6,7 @@
   gap: $e;
 }
 @mixin responsive($medida: $medida-tablet) {
-  @media screen and (min-width: $medida) {
+  @media screen and (max-width: $medida) {
     @content;
   }
 }
@@ -45,4 +45,7 @@
 
 @mixin shadow {
   box-shadow: 0 0 0 2px #f2f2f2 inset;
+}
+@mixin view-shadow {
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
 }

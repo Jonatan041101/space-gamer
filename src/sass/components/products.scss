@@ -1,0 +1,45 @@
+.products {
+  background: $background;
+  width: 100%;
+  @include flex(column, nowrap, center, center, 0);
+  &__container {
+    width: 100%;
+    max-width: 1170px;
+    padding: 1em 0.3em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  &__flex {
+    @include flex(row, nowrap, flex-start, flex-start, 1em);
+  }
+  &__cards {
+    @include flex(row, wrap, center, flex-start, 1em);
+  }
+  &__all {
+    flex-grow: 1;
+    width: 100%;
+    color: $color-li;
+    @include flex(column, nowrap, center, center, 1.5em);
+  }
+  &__column {
+    width: 100%;
+    @include flex(column, nowrap, center, center, 0.5em);
+  }
+  &__count {
+    width: 100%;
+    font-size: 1.1em;
+  }
+  &__image {
+    width: 15em;
+    height: auto;
+    // aspect-ratio: 16 / 9;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+  &__none {
+    font-size: 2.4em;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}

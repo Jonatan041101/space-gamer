@@ -94,10 +94,10 @@ export type Products = {
   categoryId?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Description>;
   id: Scalars['ID']['output'];
-  image?: Maybe<Array<Maybe<Image>>>;
+  image: Array<Maybe<Image>>;
   isCombo?: Maybe<Scalars['Boolean']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  price?: Maybe<Scalars['Int']['output']>;
+  price: Scalars['Int']['output'];
   quotes?: Maybe<Array<Maybe<Quote>>>;
   stock?: Maybe<Stock>;
   subCategory?: Maybe<SubCategory>;
@@ -110,6 +110,7 @@ export type Query = {
   brand?: Maybe<Array<Maybe<Brand>>>;
   category?: Maybe<Array<Maybe<Category>>>;
   getProduct?: Maybe<Products>;
+  getProductFilter?: Maybe<Array<Maybe<Products>>>;
   products?: Maybe<Array<Maybe<Products>>>;
   productsNonVideogames?: Maybe<Array<Maybe<Products>>>;
 };
@@ -117,6 +118,13 @@ export type Query = {
 
 export type QueryGetProductArgs = {
   name: Scalars['String']['input'];
+};
+
+
+export type QueryGetProductFilterArgs = {
+  brand?: InputMaybe<Scalars['String']['input']>;
+  nameC?: InputMaybe<Scalars['String']['input']>;
+  nameS?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -149,12 +157,12 @@ export type SubCategory = {
   name: Scalars['String']['output'];
 };
 
-export type ProductsLimitFragment = { __typename?: 'Products', id: string, name?: string | null, price?: number | null, image?: Array<{ __typename?: 'Image', image?: string | null } | null> | null, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null };
+export type ProductsLimitFragment = { __typename?: 'Products', id: string, name?: string | null, price: number, image: Array<{ __typename?: 'Image', image?: string | null } | null>, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null };
 
 export type GetProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductsQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Products', id: string, name?: string | null, price?: number | null, image?: Array<{ __typename?: 'Image', image?: string | null } | null> | null, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null } | null> | null };
+export type GetProductsQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Products', id: string, name?: string | null, price: number, image: Array<{ __typename?: 'Image', image?: string | null } | null>, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null } | null> | null };
 
 export type GetProductsNoneVideoGamesQueryVariables = Exact<{
   limit?: Scalars['Int']['input'];
@@ -162,7 +170,7 @@ export type GetProductsNoneVideoGamesQueryVariables = Exact<{
 }>;
 
 
-export type GetProductsNoneVideoGamesQuery = { __typename?: 'Query', productsNonVideogames?: Array<{ __typename?: 'Products', id: string, name?: string | null, price?: number | null, image?: Array<{ __typename?: 'Image', image?: string | null } | null> | null, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null } | null> | null };
+export type GetProductsNoneVideoGamesQuery = { __typename?: 'Query', productsNonVideogames?: Array<{ __typename?: 'Products', id: string, name?: string | null, price: number, image: Array<{ __typename?: 'Image', image?: string | null } | null>, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null } | null> | null };
 
 export type GetBannerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -184,4 +192,13 @@ export type GetProductDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetProductDetailQuery = { __typename?: 'Query', getProduct?: { __typename?: 'Products', id: string, name?: string | null, price?: number | null, isCombo?: boolean | null, brand?: { __typename?: 'BrandCategory', id: string, name?: string | null } | null, subCategory?: { __typename?: 'SubCategory', name: string } | null, category?: { __typename?: 'Category', id: string, name: string } | null, image?: Array<{ __typename?: 'Image', byOrder?: number | null, id: string, image?: string | null } | null> | null, description?: { __typename?: 'Description', id: string, subTitle?: string | null, textInit?: string | null, title?: string | null, list?: Array<{ __typename?: 'List', title?: string | null, li?: Array<{ __typename?: 'Li', id: string, byOrder?: number | null, content?: string | null } | null> | null } | null> | null, pargraph?: Array<{ __typename?: 'Paragraph', id: string, byOrder?: number | null, content?: string | null, title?: string | null } | null> | null } | null, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', id: string, name?: string | null, priceComplete?: number | null, priceCuote?: number | null } | null> | null } | null };
+export type GetProductDetailQuery = { __typename?: 'Query', getProduct?: { __typename?: 'Products', id: string, name?: string | null, price: number, isCombo?: boolean | null, brand?: { __typename?: 'BrandCategory', id: string, name?: string | null } | null, subCategory?: { __typename?: 'SubCategory', name: string } | null, category?: { __typename?: 'Category', id: string, name: string } | null, image: Array<{ __typename?: 'Image', byOrder?: number | null, id: string, image?: string | null } | null>, description?: { __typename?: 'Description', id: string, subTitle?: string | null, textInit?: string | null, title?: string | null, list?: Array<{ __typename?: 'List', title?: string | null, li?: Array<{ __typename?: 'Li', id: string, byOrder?: number | null, content?: string | null } | null> | null } | null> | null, pargraph?: Array<{ __typename?: 'Paragraph', id: string, byOrder?: number | null, content?: string | null, title?: string | null } | null> | null } | null, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', id: string, name?: string | null, priceComplete?: number | null, priceCuote?: number | null } | null> | null } | null };
+
+export type GetProductFilterQueryVariables = Exact<{
+  nameC?: InputMaybe<Scalars['String']['input']>;
+  nameS?: InputMaybe<Scalars['String']['input']>;
+  brand?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetProductFilterQuery = { __typename?: 'Query', getProductFilter?: Array<{ __typename?: 'Products', id: string, name?: string | null, price: number, brand?: { __typename?: 'BrandCategory', name?: string | null } | null, image: Array<{ __typename?: 'Image', image?: string | null } | null>, stock?: { __typename?: 'Stock', count?: number | null } | null, quotes?: Array<{ __typename?: 'Quote', name?: string | null, priceCuote?: number | null } | null> | null } | null> | null };

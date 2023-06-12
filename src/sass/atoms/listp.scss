@@ -34,11 +34,11 @@
     display: none;
   }
   &__sub {
-    &:hover > a > .listp__none {
+    &:hover > div > .listp__none {
       display: block;
     }
   }
-  &__sub a {
+  &__sub div {
     width: 100%;
   }
 }

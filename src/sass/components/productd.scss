@@ -60,8 +60,17 @@
     max-width: 20em;
   }
   &__flex {
-    @include flex(row, wrap, flex-start, flex-start, 0.4em);
+    @include flex(row, wrap, center, flex-start, 0.4em);
     width: 100%;
     // background: red;
+  }
+  &__all {
+    width: 100%;
+    border-top: 2px solid #ebebeb;
+    height: 2em;
+    color: $color-li;
+    height: 3em;
+    cursor: pointer;
+    @include flex(row, wrap, center, center, 0.4em);
   }
 }

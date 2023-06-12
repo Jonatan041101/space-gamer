@@ -1,10 +1,9 @@
 'use client';
 import Select from '@/atoms/Select';
-import { LiProducts } from '@/types/types';
 import React, { useState } from 'react';
 import AnimationList, { CategoryBrand } from './AnimationList';
 import { useQuery } from '@apollo/client';
-import { Brand, GetBrandQuery } from '@/__generated__/graphql-types';
+import { GetBrandQuery } from '@/__generated__/graphql-types';
 import { GET_BRAND } from '@/utils/graphql/query';
 
 export default function BrandList() {
@@ -26,6 +25,7 @@ export default function BrandList() {
       <Select text="Marcas" icon="down" />
       <AnimationList
         brand
+        brandFilter
         list={data?.brand as CategoryBrand[]}
         viewListProduct={viewBrandList}
       />

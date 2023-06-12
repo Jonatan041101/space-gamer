@@ -9,10 +9,10 @@ import { ListModal } from '../Footer';
 import { methodBuy, sendProducts } from '@/utils/cloudinary';
 import ListOption from './ListOption';
 interface Props {
-  quotes?: Products;
+  data?: Products;
 }
-export default function QuotesDes({ quotes }: Props) {
-  const STOCK = quotes?.stock?.count ?? 0;
+export default function QuotesDes({ data }: Props) {
+  const STOCK = data?.stock?.count ?? 0;
   const listOptions: ListModal[] = [
     {
       id: 1200,
@@ -29,11 +29,11 @@ export default function QuotesDes({ quotes }: Props) {
   ];
   return (
     <div className="quotesdes">
-      <h2 className="quotesdes__h2">{quotes?.name}</h2>
+      <h2 className="quotesdes__h2">{data?.name}</h2>
       <div className="quotesdes__buttons">
         <div className="linkcategory__container">
-          <LinkCategory text={quotes?.category?.name ?? ''} link="" />
-          <LinkCategory text={quotes?.subCategory?.name ?? ''} link="" />
+          <LinkCategory text={data?.category?.name ?? ''} link="" />
+          <LinkCategory text={data?.subCategory?.name ?? ''} link="" />
         </div>
         <div className="quotesdes__child">
           <BtnChild name="Stock">
@@ -41,12 +41,12 @@ export default function QuotesDes({ quotes }: Props) {
           </BtnChild>
           <BtnChild name="Marcas">
             <Link href={''}>
-              <p>{quotes?.brand?.name}</p>
+              <p>{data?.brand?.name}</p>
             </Link>
           </BtnChild>
         </div>
       </div>
-      <TableQuotes quotes={quotes?.quotes as Quote[]} />
+      <TableQuotes quotes={data?.quotes as Quote[]} />
       {listOptions.map((list) => (
         <ListOption key={list.id} list={list} />
       ))}

@@ -10,6 +10,7 @@
   &:hover .card__div {
     background: #e5e5e5;
   }
+
   &:hover .card__div > .card__i {
     background: #e5e5e5;
     color: $color-dark;
@@ -26,7 +27,8 @@
     overflow: hidden;
   }
   &__image {
-    object-fit: scale-down;
+    // object-fit: scale-down;
+    object-fit: contain;
     transition: 0.5s ease;
     &:hover {
       transform: scale(1.45);
@@ -94,13 +96,58 @@
     }
   }
   &__add {
+    position: absolute;
     width: 100%;
-    height: 1.5em;
+    height: 3em;
     padding: 0 1em;
+    top: 100%;
+    background: #fff;
     display: none;
+    box-shadow: 0 2.5px 0.2em $color-dark;
+    z-index: 15;
+  }
+  &__btn {
+    height: 1.5em;
+    width: 100%;
   }
   &:hover > .card__add {
-    display: block;
+    @include flex(column, nowrap, center, center, 0);
+  }
+  &__modals {
+    width: 100%;
+    max-width: 1170px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  &__close {
+    cursor: pointer;
+    width: 1.2em;
+    box-sizing: content-box;
+    padding: 0.5em 0.5em 0 0;
+    align-self: flex-end;
+    color: $color-drop-gray;
+    @include flex(row, nowrap, flex-end, flex-end, 0);
+    right: 0.5em;
+    &:hover {
+      color: $color-li;
+    }
+  }
+  &__modal {
+    color: $color-li;
+    background: #fff;
+    position: relative;
+    max-height: 620px;
+    overflow: auto;
+    padding: 0em 0.8em 1em;
+    width: 100%;
+    max-width: 1170px;
+    @include responsive(700px) {
+      max-height: 550px;
+    }
+  }
+  &__container {
+    display: flex;
   }
 }
 #card__divid {

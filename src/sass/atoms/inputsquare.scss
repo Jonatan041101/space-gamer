@@ -1,6 +1,11 @@
 .inputsquare {
   // width: 100%;
   flex-grow: 3;
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+  }
   &__input {
     border: 1px solid #ced4da;
     width: 100%;

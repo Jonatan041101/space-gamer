@@ -1,0 +1,69 @@
+.filter {
+  color: $color-li;
+  max-width: 15em;
+  background: #fff;
+  // padding: 0 1em;
+  width: 100%;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+  font-weight: bold;
+
+  @include flex(column, nowrap, center, center, 0);
+  &__title {
+    width: 100%;
+    font-size: 1.3em;
+    padding: 1em;
+    font-weight: bold;
+    border-bottom: 2px solid #ebebeb;
+    // background: red;
+  }
+  &__input {
+    width: 100%;
+    padding: 1em;
+    border-bottom: 2px solid #ebebeb;
+  }
+  &__category {
+    width: 100%;
+    // flex-grow: 1;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-bottom: 2px solid #ebebeb;
+  }
+  &__brand {
+    padding: 0.5em 1em;
+    width: 100%;
+    flex-grow: 1;
+    border-bottom: 2px solid #ebebeb;
+  }
+  &__button {
+    background: #000;
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    align-self: flex-end;
+    margin: 0.5em;
+    &:hover {
+      background: $color-dark;
+    }
+  }
+  &__ul {
+    @include flex(column, nowrap, flex-start, flex-start, 0.25em);
+    padding: 0 0 0 0.5em;
+    margin: 0.5em 0 0 0;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  &__lii {
+    cursor: pointer;
+  }
+  &__li {
+    cursor: pointer;
+  }
+  &__sub {
+    padding: 0 0 0 0.5em;
+    margin: 0.5em 0 0 0;
+    @include flex(column, nowrap, flex-start, flex-start, 0.25em);
+  }
+  &__subli {
+    cursor: pointer;
+  }
+}

@@ -17,7 +17,6 @@
     @include flex(row, nowrap, center, center, 0);
     background: blue;
     width: 100%;
-    box-sizing: content-box;
     border: 1px solid #f0f0f0;
     height: 2.5em;
     background: #fff;

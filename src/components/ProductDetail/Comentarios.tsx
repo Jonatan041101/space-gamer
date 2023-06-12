@@ -14,7 +14,13 @@ export default function Comentarios() {
     <div className="options__description">
       <h2 className="options__title">Dejanos tu comentario</h2>
       <div className="options__comment">
-        <InputSquare input labelText="Tu Nombre" />
+        <InputSquare
+          value=""
+          handleChange={() => {}}
+          placeholder=""
+          input
+          labelText="Tu Nombre"
+        />
         <div className="options__flex">
           <h3 className="options__h3">Selecciona un puntaje</h3>
           <div className="options__stars">
@@ -24,7 +30,12 @@ export default function Comentarios() {
           </div>
         </div>
       </div>
-      <InputSquare labelText="Tu Comentario" />
+      <InputSquare
+        value=""
+        handleChange={() => {}}
+        placeholder=""
+        labelText="Tu Comentario"
+      />
       <button className="options__btn">Enviar</button>
       <AllComents />
     </div>

@@ -7,8 +7,7 @@ import { useBearStore } from '@/store/store';
 interface Props {}
 
 export default function CartC({}: Props) {
-  const { viewCart, handleViewCart } = useBearStore((state) => state);
-  console.log({ viewCart });
+  const { viewCart, handleViewCart, cart } = useBearStore((state) => state);
   const handleOpenModalCart = (evt: React.MouseEvent) => {
     evt.stopPropagation();
     handleViewCart(true);
@@ -17,7 +16,7 @@ export default function CartC({}: Props) {
     <>
       <li className="cart" onClick={handleOpenModalCart}>
         <i className="cart__icon">
-          <div className="cart__count">0</div>
+          <div className="cart__count">{cart.length}</div>
           <Icons icon="cart" />
         </i>
       </li>

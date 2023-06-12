@@ -6,7 +6,7 @@
   border-radius: 0.2em;
   @include flex(row, nowrap, center, center, 1em);
   &:hover {
-    background: $color-li;
+    background: #262626;
   }
   &:hover .cart__count {
     background: #fff;
@@ -28,5 +28,47 @@
   &__icon {
     position: relative;
     width: 1.2em;
+  }
+  &__products {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  &__container {
+    width: 100%;
+    @include flex(row, nowrap, flex-start, center, 0.4em);
+    padding: 0.7em 0.5em;
+  }
+  &__product {
+    width: 100%;
+    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
+    position: relative;
+  }
+  &__i {
+    cursor: pointer;
+    position: absolute;
+    width: 0.6em;
+    top: 0.5em;
+    right: 0.5em;
+    color: $color-drop-gray;
+    &:hover {
+      color: $color-li;
+    }
+  }
+  &__description {
+    flex-grow: 1;
+    height: 100%;
+    @include flex(column, nowrap, flex-start, flex-start, 0.5em);
+  }
+  &__image {
+    width: 5em;
+    object-fit: scale-down;
+    // object-fit: contain;
+  }
+  &__h4 {
+    font-weight: bold;
+  }
+  &__price {
+    font-weight: bold;
   }
 }

@@ -27,6 +27,7 @@
     padding: 0.7em 0;
     flex-grow: 1;
     border-radius: 0.2em;
+    @include flex(row, nowrap, center, center, 0.5em);
     // font-weight: bold;
   }
   &__btncart {

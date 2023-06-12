@@ -1,22 +1,27 @@
-import Icons from '@/atoms/Icons';
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import SquareIcon from './SquareIcon';
 import { Products } from '@/__generated__/graphql-types';
 import { parsePriceValueMoneyARS } from '@/utils/parses';
+import { useBearStore } from '@/store/store';
 
 interface Props {
   product: Products;
 }
 
 export default function CardV2({ product }: Props) {
-  const IMAGE = product.image ? product.image[0]?.image ?? '' : '';
+  const { handleViewModal } = useBearStore((state) => state);
+  const IMAGE = product.image[0]?.image ?? '';
   const QUOTES = product.quotes && product.quotes[3];
+  const handleClickModal = () => {
+    handleViewModal(product.name ?? '');
+  };
   return (
     <article className="cardv2">
-      <SquareIcon />
-      <Link href="/">
+      <SquareIcon handleClick={handleClickModal} />
+      <Link href={`/product/${product.name}`}>
         <Image
           className="cardv2__image"
           src={IMAGE}

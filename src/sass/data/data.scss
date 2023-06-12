@@ -1,0 +1,30 @@
+[data-list='true'] {
+  top: 3.15em;
+  border: none;
+  height: 20em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 17em;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+}
+[data-column='true'] {
+  width: 100%;
+  position: relative;
+  border: none;
+  padding: 0;
+  top: 0;
+  cursor: pointer;
+}
+[data-i='true'] {
+  transform: rotate(0deg);
+}
+[data-ul='true'] {
+  position: static;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+[data-ul='true'] li {
+  padding: 0 0 0 1.2em;
+}

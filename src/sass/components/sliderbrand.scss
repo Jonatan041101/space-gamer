@@ -1,10 +1,25 @@
 .sliderbrand {
-  @include flex(row, nowrap, flex-start, flex-start, 2em);
-  overflow: scroll;
-  background: #fff;
-  padding: 0 0.5em;
+  width: 100%;
+  @include flex(column, nowrap, center, center, 0);
+  &__div {
+    width: 100%;
+    max-width: 1170px;
+    overflow: hidden;
+  }
+  &__container {
+    transform: translateX(-1550px);
+    @include flex(row, nowrap, flex-start, flex-start, 2em);
+    transition: 0.5s linear;
+  }
   &__image {
     object-fit: scale-down;
     mix-blend-mode: multiply;
+    cursor: pointer;
+  }
+}
+@keyframes carruzel {
+  0% {
+  }
+  100% {
   }
 }

@@ -4,6 +4,7 @@
   &__container {
     max-width: 1170px;
     width: 100%;
+    padding: 0 1em;
     @include flex(row, wrap, space-between, center, 0.4em);
   }
   &__section {

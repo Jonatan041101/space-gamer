@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   text: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 export default function Button({ handleClick, text }: Props) {
   return (
