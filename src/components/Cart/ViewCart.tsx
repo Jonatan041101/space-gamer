@@ -2,6 +2,7 @@ import { useBearStore } from '@/store/store';
 import React from 'react';
 import PriceCart from './PriceCart';
 import Link from 'next/link';
+import LinkCart from './LinkCart';
 
 export default function ViewCart() {
   return (
@@ -12,9 +13,7 @@ export default function ViewCart() {
           <PriceCart />
         </div>
         <div className="viewcart__buttons">
-          <Link href={'/cart'} className="viewcart__btn viewcart__btncart">
-            Ver Carrito
-          </Link>
+          <LinkCart />
           <button className="viewcart__btn viewcart__btnend">Finalizar</button>
         </div>
       </div>

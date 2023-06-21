@@ -8,6 +8,8 @@ import { useBearStore } from '@/store/store';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
+
+import PersistSession from '@/components/PersistSession/PersistSession';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -20,12 +22,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { handleViewListProduct, handleViewCart } = useBearStore(
-    (state) => state
-  );
+  // const { getLogin } = useLogin();
+
+  const { handleViewListProduct, handleViewCart, user, registerUser } =
+    useBearStore((state) => state);
+
   const closeAllModal = () => {
+    // if (viewListProduct) {
     handleViewListProduct(false);
+    // }
+    // if (viewCart) {
     handleViewCart(false);
+    // }
   };
   return (
     <html lang="es">
@@ -36,6 +44,7 @@ export default function RootLayout({
       >
         <ApolloProvider client={client}>
           <Header />
+          <PersistSession />
           {children}
           <ProductModal />
 

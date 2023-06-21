@@ -14,7 +14,7 @@ import { useBearStore } from '@/store/store';
 import { useRouter } from 'next/navigation';
 
 export default function LinksComponentsPc() {
-  const linksComponentsPcMap: ProductsMap[] = [
+  const linksComponentsPcMap: Omit<ProductsMap, 'count'>[] = [
     {
       id: 320,
       image: mouse,

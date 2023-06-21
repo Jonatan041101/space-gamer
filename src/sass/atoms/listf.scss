@@ -26,6 +26,11 @@
   }
   &__span {
   }
+  &__link {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85em;
+  }
   &__footer {
     width: 150px;
     flex-grow: 1;

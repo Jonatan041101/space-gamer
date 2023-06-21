@@ -1,0 +1,182 @@
+.register {
+  @include flex(row, nowrap, flex-start, flex-start, 1.5em);
+  width: 100%;
+  @include responsive(900px) {
+    flex-direction: column;
+  }
+  &__menu {
+    @include flex(column, nowrap, flex-start, flex-start, 0);
+    &--text {
+      font-weight: bold;
+      padding: 0.8em 0.7em;
+      @include responsive(900px) {
+        display: none;
+      }
+    }
+    width: 100%;
+    max-width: 13em;
+    height: 20em;
+    background: transparent;
+    @include shadow;
+    @include responsive(900px) {
+      flex-direction: row;
+      height: auto;
+      max-width: 100%;
+      border-bottom: 2px solid #dfdddd;
+      position: relative;
+      height: 43.38px;
+    }
+  }
+  &__span {
+    font-size: 1.3em;
+  }
+  &__ul {
+    display: flex;
+    flex-direction: column;
+    @include responsive(900px) {
+      flex-direction: row;
+      position: absolute;
+      top: 0;
+    }
+  }
+  &__li {
+    padding: 0.7em;
+    color: $color-text;
+    cursor: pointer;
+  }
+  &__dates {
+    flex-grow: 1;
+    @include flex(column, nowrap, center, center, 1.5em);
+    @include responsive(900px) {
+      width: 100%;
+    }
+  }
+  &__init {
+    @include flex(row, nowrap, flex-start, flex-start, 1.5em);
+    width: 100%;
+    @include responsive(720px) {
+      flex-direction: column;
+    }
+  }
+  &__image {
+    @include flex(column, nowrap, center, center, 1.5em);
+    height: 20em;
+    width: 20em;
+    background: #fff;
+    color: $color-text;
+    @include shadow;
+    flex-grow: 1;
+    @include responsive(720px) {
+      width: 100%;
+    }
+  }
+  &__img {
+    border-radius: 50%;
+  }
+  &__name {
+    font-weight: 600;
+    color: $color-dark;
+  }
+  &__email {
+  }
+  &__btn {
+    @include flex(column, nowrap, center, center, 0em);
+  }
+  &__edit {
+    width: 100%;
+    background: #f0f0f0;
+    padding: 0.5em 0.7em;
+    border-radius: 0.2em;
+    &:hover {
+      background: $color-dark;
+      color: #fff;
+    }
+  }
+  &__address {
+    background: #fff;
+    height: 20em;
+    width: 20em;
+    @include shadow;
+    padding: 1em 1.5em;
+    @include flex(column, nowrap, center, center, 0em);
+    position: relative;
+    flex-grow: 1;
+    @include responsive(720px) {
+      width: 100%;
+    }
+  }
+  &__mis {
+    position: absolute;
+    background: $color-li;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 0.75em;
+    padding: 0.5em;
+    top: 0;
+    right: 2em;
+  }
+  &__textinit {
+    @include flex(column, nowrap, center, center, 0.4em);
+    width: 100%;
+  }
+  &__h2 {
+    width: 100%;
+    font-weight: bold;
+  }
+  &__addres {
+    width: 100%;
+  }
+  &__content {
+    @include flex(column, nowrap, flex-start, flex-start, 0.1em);
+    padding: 0.5em 0;
+    width: 100%;
+    border-bottom: 1px solid #dfdddd;
+  }
+  &__info {
+    font-size: 0.76em;
+    color: $color-text;
+  }
+
+  &__button {
+    width: 100%;
+    text-align: left;
+    padding: 1em 0;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+  &__modal {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background: #fff;
+    padding: 2em 1.5em;
+    position: relative;
+  }
+  &__modal form {
+    box-shadow: none;
+  }
+  &__i {
+    width: 1em;
+    color: $color-text;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    cursor: pointer;
+    &:hover {
+      color: #000;
+    }
+  }
+  &__informacion {
+    font-weight: bold;
+    font-size: 1.8em;
+  }
+}
+[data-li-select='true'] {
+  border-left: 2px solid $color-li;
+  @include responsive(900px) {
+    border: none;
+    border-bottom: 2px solid $color-li;
+  }
+}

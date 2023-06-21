@@ -20,6 +20,7 @@ interface Props {
   brandFilter?: boolean;
   down?: boolean;
   listDown?: boolean;
+  viewDown?: boolean;
 }
 export default function AnimationList({
   list,
@@ -29,6 +30,7 @@ export default function AnimationList({
   column = false,
   down = false,
   listDown = false,
+  viewDown = false,
 }: Props) {
   return (
     <AnimatePresence>
@@ -46,6 +48,7 @@ export default function AnimationList({
           {list &&
             list.map((li, i) => (
               <ListProducts
+                viewDown={viewDown}
                 down={down}
                 listDown={listDown}
                 brand={brandFilter}

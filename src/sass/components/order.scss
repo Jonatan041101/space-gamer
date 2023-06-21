@@ -1,0 +1,29 @@
+.order {
+  color: #000;
+  width: 100%;
+  max-width: 10em;
+  background: #fff;
+  position: relative;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  & div div i {
+    color: #000;
+  }
+  &__absolute {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #fff;
+    z-index: 50;
+    left: -1px;
+    border: 1px solid #000;
+    border-top: none;
+    box-sizing: content-box;
+  }
+  &__map {
+    color: #000;
+  }
+  &__li {
+    cursor: pointer;
+  }
+}

@@ -5,7 +5,7 @@ import React from 'react';
 export default function NonProducts() {
   return (
     <div className="viewcart__cero">
-      <h4>Tu carrito este vacio!</h4>
+      <h4>Tu carrito esta vacio!</h4>
       <Image src={cart} alt="" width={200} height={200} />
     </div>
   );

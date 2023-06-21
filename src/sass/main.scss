@@ -18,7 +18,8 @@
   './components/user.scss', './components/products.scss',
   './components/filter.scss', './components//menu.scss',
   './components/userpage.scss', './components/cartpage.scss',
-  './components/container.scss', './data/data.scss';
+  './components/container.scss', './data/data.scss', './components/order.scss',
+  './components/register.scss', './components/orders.scss';
 .main {
   // background: $background;
   // height: 200vh;
@@ -28,6 +29,7 @@
   // @include flex(column, nowrap, center, center, 2em);
   // height: 100vh;
   background: $background;
+  padding: 0 0 2em 0;
   &__div {
     width: 100%;
     display: flex;

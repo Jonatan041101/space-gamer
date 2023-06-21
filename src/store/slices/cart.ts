@@ -1,7 +1,8 @@
 import { Products } from '@/__generated__/graphql-types';
 import { StateCreator } from 'zustand';
-export interface ProductToCart extends Products {
+export interface ProductToCart {
   count: number;
+  product?: Products | null;
 }
 export interface ProductsCart {
   modal: boolean;

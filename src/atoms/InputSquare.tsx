@@ -1,9 +1,11 @@
+import { NameRegister } from '@/components/Register/Register';
 import React from 'react';
 
 interface Props {
   input?: boolean;
   labelText: string;
   value: string;
+  name?: NameRegister;
   placeholder: string;
   handleChange: (
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -15,6 +17,7 @@ export default function InputSquare({
   labelText,
   value,
   placeholder,
+  name,
   handleChange,
 }: Props) {
   return (
@@ -26,6 +29,7 @@ export default function InputSquare({
             placeholder={placeholder}
             onChange={handleChange}
             value={value}
+            name={name ?? ''}
             className="inputsquare__input"
           />
         ) : (

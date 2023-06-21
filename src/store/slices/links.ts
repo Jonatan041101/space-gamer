@@ -1,6 +1,7 @@
 import { Category, Products } from '@/__generated__/graphql-types';
 import { LinksPrev } from '@/components/ProductDetail/LinksPrevProduct';
 import { StateCreator } from 'zustand';
+export type ORDER = 'Defecto' | 'A-Z' | 'Z-A' | 'Precio Min' | 'Precio Max';
 
 export interface Links {
   links: LinksPrev[];
@@ -10,6 +11,8 @@ export interface Links {
   brand: string | null;
   image: string | null;
   cards: Products[];
+  typeOrder: ORDER;
+  changeTypeOrder: (order: ORDER) => void;
   cardsCopy: Products[];
   brandSelect: string | null;
   searchInput: string;
@@ -29,6 +32,7 @@ export const sliceLinks: StateCreator<Links> = (set) => ({
   links: [],
   brand: null,
   category: null,
+  typeOrder: 'Defecto',
   subCategory: null,
   image: null,
   categorySelect: null,
@@ -36,6 +40,9 @@ export const sliceLinks: StateCreator<Links> = (set) => ({
   cardsCopy: [],
   brandSelect: null,
   searchInput: '',
+  changeTypeOrder: (order) => {
+    set((state) => ({ ...state, typeOrder: order }));
+  },
   handleAddCards: (cards) => {
     set((state) => ({ ...state, cards, cardsCopy: cards, brandSelect: null }));
   },

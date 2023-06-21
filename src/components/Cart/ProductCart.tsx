@@ -8,26 +8,26 @@ interface Props {
   product: ProductToCart;
 }
 export default function ProductCart({ product }: Props) {
-  const IMAGE = product.image[0]?.image ?? '';
+  const IMAGE = product.product?.image[0]?.image ?? '';
   return (
-    <article key={product.id} className="cart__product">
-      <DeleteProduct id={product.id} />
+    <article key={product.product?.id} className="cart__product">
+      <DeleteProduct id={product.product?.id ?? ''} />
       <div className="cart__container">
         <div className="cart__img">
           <Image
             className="cart__image"
             src={IMAGE}
-            alt={`Imagen de portada de ${product.name}`}
+            alt={`Imagen de portada de ${product.product?.name}`}
             width={100}
             height={100}
           />
         </div>
         <div className="cart__description">
-          <h4 className="cart__h4">{product.name}</h4>
+          <h4 className="cart__h4">{product.product?.name}</h4>
           <div>
             <span>{product.count} × </span>
             <span className="cart__price">
-              {parsePriceValueMoneyARS(product.price)}
+              {parsePriceValueMoneyARS(product.product?.price)}
             </span>
           </div>
         </div>

@@ -1,3 +1,4 @@
+'use client';
 import { Quote } from '@/__generated__/graphql-types';
 import { parsePriceValueMoneyARS } from '@/utils/parses';
 import React, { Fragment } from 'react';
@@ -15,10 +16,10 @@ export default function TableQuotes({ quotes }: Props) {
           <tr className="table__tr" key={quote.id}>
             <td className="table__td">{quote.name}</td>
             <td className="table__td">
-              {parsePriceValueMoneyARS(quote.priceCuote)}
+              {parsePriceValueMoneyARS(quote.priceCuote) || '$0'}
             </td>
             <td className="table__td">
-              {parsePriceValueMoneyARS(quote.priceComplete)}{' '}
+              {parsePriceValueMoneyARS(quote.priceComplete) || '$0'}{' '}
             </td>
           </tr>
         ))}

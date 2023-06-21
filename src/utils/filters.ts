@@ -1,5 +1,7 @@
 import { Products } from '@/__generated__/graphql-types';
+import { utilsOrderProducts } from '@/components/Filter/Order';
 import { ProductToCart } from '@/store/slices/cart';
+import { ORDER } from '@/store/slices/links';
 
 export const handleAllFilter = (
   cards: Products[],
@@ -24,6 +26,19 @@ export const handleAllFilter = (
   return products;
 };
 export const utilExistProduct = (products: ProductToCart[], id: string) => {
-  const existProduct = products.find((product) => product?.id === id);
+  const existProduct = products.find(({ product }) => product?.id === id);
   return existProduct;
+};
+export type AddCards = (products: Products[]) => void;
+
+export const orderProductsBeforeGetDB = (
+  typeOrder: ORDER,
+  products: Products[],
+  handleAddCards: AddCards
+) => {
+  if (typeOrder !== 'Defecto') {
+    const productsOrder = utilsOrderProducts(typeOrder, products);
+    return handleAddCards(productsOrder);
+  }
+  handleAddCards(products);
 };

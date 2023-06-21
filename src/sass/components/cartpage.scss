@@ -86,7 +86,7 @@
     @include flex(column, nowrap, center, center, 2.5em);
   }
   &__price {
-    @include flex(row, nowrap, flex-start, flex-start, 0);
+    @include flex(row, nowrap, flex-start, flex-start, 0.4em);
     font-weight: bold;
     font-size: 1.5em;
   }
@@ -109,5 +109,18 @@
       max-width: 100%;
       flex-direction: column-reverse;
     }
+  }
+  &__null {
+    display: block;
+    // box-sizing: content-box;
+    width: 100%;
+    padding: 1em 0;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  &__results {
+    color: #006c00;
+    font-weight: bold;
   }
 }

@@ -2,6 +2,7 @@
   // background: red;
   flex-grow: 1;
   background: #fff;
+  width: 100%;
   box-sizing: content-box;
   &__table {
     @include flex(column, nowrap, flex-start, flex-start, 0);

@@ -7,6 +7,7 @@
   position: relative;
   @include flex(column, nowrap, center, flex-start, 1em);
   box-shadow: 0 0 0.2em $color-dark;
+  text-transform: capitalize;
   &:hover .card__div {
     background: #e5e5e5;
   }
@@ -84,7 +85,7 @@
       color: #fb9e0b;
     }
     &--non {
-      color: $green;
+      color: rgb(255, 102, 102);
     }
   }
   &__quotes {

@@ -1,6 +1,9 @@
 'use client';
+import { GetCountProductsHomeQuery } from '@/__generated__/graphql-types';
 import { useBearStore } from '@/store/store';
 import { auricular, gabinete, monitor, pcCombo } from '@/utils/cloudinary';
+import { GET_COUNT_PRODUCT_HOME } from '@/utils/graphql/query';
+import { useQuery } from '@apollo/client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -9,25 +12,47 @@ export interface ProductsMap {
   name: string;
   image: string;
   link: string;
+  count: number;
 }
-const linksProducts: ProductsMap[] = [
-  { id: 301, image: auricular, link: '/products', name: 'auriculares' },
-  { id: 302, image: gabinete, link: '/products', name: 'gabinetes' },
-  { id: 303, image: pcCombo, link: '/products', name: 'monitores' },
-  {
-    id: 304,
-    image: monitor,
-    link: '/',
-    name: 'Pc Armadas',
-  },
-];
 export default function LinksProducts() {
   const { handleFilterCB } = useBearStore((state) => state);
   const router = useRouter();
+  const { data } = useQuery<GetCountProductsHomeQuery>(GET_COUNT_PRODUCT_HOME);
   const handleFilters = (category: string) => {
     handleFilterCB(category, null, null, null, null);
     router.push('/products');
   };
+
+  const linksProducts: ProductsMap[] = [
+    {
+      id: 301,
+      image: auricular,
+      link: '/products',
+      name: 'auriculares',
+      count: data?.countProducts?.auricular ?? 0,
+    },
+    {
+      id: 302,
+      image: gabinete,
+      link: '/products',
+      name: 'gabinetes',
+      count: data?.countProducts?.gabinetes ?? 0,
+    },
+    {
+      id: 304,
+      image: pcCombo,
+      link: '/',
+      name: 'Pc Armadas',
+      count: data?.countProducts?.pcs ?? 0,
+    },
+    {
+      id: 303,
+      image: monitor,
+      link: '/products',
+      name: 'monitores',
+      count: data?.countProducts?.monitores ?? 0,
+    },
+  ];
 
   return (
     <div className="linkproduct">
@@ -47,7 +72,7 @@ export default function LinksProducts() {
               />
               <span className="linkproduct__span">{product.name}</span>
             </div>
-            <p className="linkproduct__p">10 productos</p>
+            <p className="linkproduct__p">{product.count} productos</p>
           </article>
         ))}
       </section>

@@ -4,18 +4,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { logo } from '@/utils/cloudinary';
 import Link from 'next/link';
 import PositionFixed from './PositionFixed';
+import { useBearStore } from '@/store/store';
+import User from './User/User';
 
 export type Fixed = 'static' | 'fixed';
 
 export default function Header() {
-  const [pos, setPos] = useState<Fixed>('static');
+  // const [pos, setPos] = useState<Fixed>('static');
+  const { handleChangeFix, fixedMenu } = useBearStore((state) => state);
   const fixedRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) {
-        setPos('fixed');
+        handleChangeFix('fixed');
       } else {
-        setPos('static');
+        handleChangeFix('static');
       }
     });
     if (fixedRef.current) {
@@ -38,7 +41,7 @@ export default function Header() {
             <span className="header__number">+5493517719671</span>
           </div>
         </div>
-        <PositionFixed posi={pos} />
+        <PositionFixed posi={fixedMenu} />
       </div>
     </header>
   );

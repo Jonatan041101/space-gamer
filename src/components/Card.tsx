@@ -3,12 +3,14 @@ import { Products } from '@/__generated__/graphql-types';
 import Button from '@/atoms/Button';
 import { parsePriceValueMoneyARS } from '@/utils/parses';
 import Image from 'next/image';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SquareIcon from './SquareIcon';
 import Stock from '@/atoms/Stock';
 import { useBearStore } from '@/store/store';
 import { utilExistProduct } from '@/utils/filters';
+import { handleAddStrSubUrl } from './ListSubProducts';
+import useAddCart from '@/hooks/useAddCart';
 
 interface Props {
   product: Products;
@@ -17,21 +19,43 @@ interface Props {
 
 export default function Card({ product, isAbilitedClick }: Props) {
   const router = useRouter();
-  // Variables para JSX
-  const { handleViewModal, cart, handleAddToCart } = useBearStore(
-    (state) => state
-  );
-  const IMAGE = product.image[0]?.image ?? '';
+  const [count, setCount] = useState<number>(0);
+  const timerId = useRef<NodeJS.Timeout>();
+  const { handleViewModal, user, cart, handleAddToCart, handleAddHistoryLink } =
+    useBearStore((state) => state);
 
+  const { handleAddProductCart } = useAddCart();
+
+  const IMAGE = product.image[0]?.image ?? '';
   const STOCK = product.stock?.count ?? 0;
   const PRICE = parsePriceValueMoneyARS(product.price);
   const QUOTES = product.quotes && product.quotes[3];
+
   const handleAddToCar = () => {
     const copyCart = [...cart];
     const existProduct = utilExistProduct(copyCart, product?.id);
+    if (existProduct) {
+      if (existProduct.count + count >= Number(product.stock?.count)) {
+        return;
+      }
+    }
+    if (user.hasOwnProperty('email')) {
+      setCount((count) => count + 1);
+      clearTimeout(timerId.current);
+      timerId.current = setTimeout(async () => {
+        await handleAddProductCart({
+          variables: {
+            cartId: user.cart.id,
+            productId: product.id,
+            count: count + 1,
+          },
+        });
+        setCount(0);
+      }, 500);
+    }
     if (!existProduct) {
       const productCart = {
-        ...product,
+        product,
         count: 1,
       };
       const cartAll = [...cart, productCart];
@@ -41,7 +65,14 @@ export default function Card({ product, isAbilitedClick }: Props) {
     handleAddToCart(copyCart);
   };
   const handleLink = () => {
-    if (isAbilitedClick) {
+    const allLinks = handleAddStrSubUrl(
+      product.category?.name ?? '',
+      product.name,
+      true
+    );
+
+    if (isAbilitedClick && allLinks) {
+      handleAddHistoryLink(allLinks);
       router.push(`/product/${product.name}`);
     }
   };
@@ -75,7 +106,10 @@ export default function Card({ product, isAbilitedClick }: Props) {
             </span>
           </p>
         </div>
-        <div className="card__add" onClick={handleAddToCar}>
+        <div
+          className="card__add"
+          onClick={STOCK === 0 ? () => {} : handleAddToCar}
+        >
           <div className="card__btn">
             <Button text="Agregar" />
           </div>

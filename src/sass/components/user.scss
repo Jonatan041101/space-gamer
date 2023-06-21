@@ -1,12 +1,15 @@
 .user {
   position: relative;
   &__container {
+    box-sizing: content-box;
     position: absolute;
-    top: 100%;
+    top: 100%; // 117
     right: 0;
     z-index: 20;
     width: 14em;
-    height: 20em;
+    // height: 20em;
+    height: auto;
+    padding: 1em 0.5em;
     color: $color-li;
     background: #fff;
     box-shadow: 0 1px 15px rgba(0, 0, 0, 0.25);
@@ -31,5 +34,32 @@
       background: $color-dark;
     }
     // flex-grow: 1;
+  }
+  &__on {
+    font-size: 0.8em;
+    @include flex(column, nowrap, center, center, 0);
+    &--email {
+      width: 100%;
+      @include flex(row, nowrap, center, center, 0.5em);
+      padding: 1em 0.5em;
+      border-bottom: 1px solid #ebebeb;
+      &:hover {
+        background: $color-hover--list;
+      }
+    }
+    &--i {
+      width: 1em;
+    }
+    &--exit {
+      width: 100%;
+      padding: 0.4em;
+      border-radius: 0.2em;
+      text-align: left;
+      font-size: 1em;
+      padding: 1em 0.5em;
+      &:hover {
+        background: $color-hover--list;
+      }
+    }
   }
 }

@@ -2,6 +2,11 @@
   background: $background;
   width: 100%;
   @include flex(column, nowrap, center, center, 0);
+  &__order {
+    // width: 5em;
+    width: 100%;
+    color: #000;
+  }
   &__container {
     width: 100%;
     max-width: 1170px;
@@ -29,6 +34,11 @@
   &__count {
     width: 100%;
     font-size: 1.1em;
+    @include flex(row, nowrap, flex-start, center, 1em);
+  }
+  &__length {
+    width: 100%;
+    max-width: 13em;
   }
   &__image {
     width: 15em;

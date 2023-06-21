@@ -9,7 +9,7 @@ export default function ProductsMapCart({ products }: Props) {
   return (
     <div className="cart__products">
       {products.map((product) => (
-        <ProductCart key={product.id} product={product} />
+        <ProductCart key={product?.product?.id} product={product} />
       ))}
     </div>
   );

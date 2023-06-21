@@ -1,13 +1,19 @@
 .filter {
   color: $color-li;
   max-width: 15em;
-  background: #fff;
-  // padding: 0 1em;
+  position: relative;
   width: 100%;
-  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
   font-weight: bold;
-
-  @include flex(column, nowrap, center, center, 0);
+  &__fixed {
+    width: 100%;
+    top: 76px;
+    // position: fixed;
+    width: 15em;
+    background: #fff;
+    padding: 0 1em;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.09);
+    @include flex(column, nowrap, center, center, 0);
+  }
   &__title {
     width: 100%;
     font-size: 1.3em;

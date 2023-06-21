@@ -1,34 +1,13 @@
 'use client';
-import { GetProductFilterQuery, Products } from '@/__generated__/graphql-types';
+import { Products } from '@/__generated__/graphql-types';
 import { useBearStore } from '@/store/store';
-import { GET_PRODUCT_FILTER } from '@/utils/graphql/query';
-import { useLazyQuery, useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from './Card';
 import Image from 'next/image';
+import Order from './Filter/Order';
 
 export default function ProductsFilter() {
-  const { category, subCategory, brand, cards, image, handleAddCards } =
-    useBearStore((state) => state);
-  const [getProducts, { data, loading }] =
-    useLazyQuery<GetProductFilterQuery>(GET_PRODUCT_FILTER);
-  useEffect(() => {
-    const getProductsFilter = async () => {
-      await getProducts({
-        variables: {
-          nameC: category,
-          nameS: subCategory,
-          brand,
-        },
-      });
-    };
-    getProductsFilter();
-  }, [category, subCategory, brand]);
-  useEffect(() => {
-    if (data) {
-      handleAddCards(data.getProductFilter as Products[]);
-    }
-  }, [data]);
+  const { brand, cards, image } = useBearStore((state) => state);
 
   return (
     <div className="products__all">
@@ -43,7 +22,12 @@ export default function ProductsFilter() {
       )}
       <div className="products__column">
         <div className="products__count">
-          Mostrando {data?.getProductFilter?.length} resultados
+          <div className="products__length">
+            Mostrando {cards.length} resultados
+          </div>
+          <div className="products__order">
+            <Order />
+          </div>
         </div>
         <div className="products__cards">
           {cards.map((product) => (
@@ -53,7 +37,7 @@ export default function ProductsFilter() {
               product={product as Products}
             />
           ))}
-          {data?.getProductFilter && data.getProductFilter.length === 0 && (
+          {cards.length === 0 && (
             <div className="products__none">Sin resultados</div>
           )}
         </div>

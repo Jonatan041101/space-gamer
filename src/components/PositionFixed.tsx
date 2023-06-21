@@ -11,7 +11,7 @@ export default function PositionFixed({ posi }: Props) {
   return (
     <div
       className="header__fixed"
-      style={{ position: posi, zIndex: 50, top: 0 }}
+      style={{ position: posi, zIndex: 60, top: 0 }}
     >
       <div className="header__bottom">
         <NavHeader />

@@ -5,6 +5,8 @@ import { LiProducts } from '@/types/types';
 import { logo } from '@/utils/cloudinary';
 import Image from 'next/image';
 import React from 'react';
+import AnimationList, { CategoryBrand } from './NavHeader/AnimationList';
+import Link from 'next/link';
 type List = Omit<LiProducts, 'link'> & { icon?: IconType };
 const listMap: List[] = [
   {
@@ -32,9 +34,8 @@ const linksPage: LiProducts[] = [
     link: '/',
     name: 'Home',
   },
-  { id: 611, link: '/', name: 'Contacto' },
-  { id: 612, link: '/', name: 'Mis Pedidos' },
   { id: 613, link: '/', name: 'Arma tu Pc' },
+  { id: 613, link: '/cart', name: 'Carrito' },
   { id: 614, link: '/', name: 'Terminos y condiciones' },
 ];
 export default function ListFooter() {
@@ -64,19 +65,22 @@ export default function ListFooter() {
       <ul className="listf__ul listf__footer">
         <h3 className="listf__h3">Información</h3>
         {linksPage.map((list) => (
-          <li key={list.id}>
-            <span className="listf__span">{list.name}</span>
-          </li>
+          <Link href={list.link} key={list.id}>
+            <span className="listf__span listf__link">{list.name}</span>
+          </Link>
         ))}
       </ul>
       <ul className="listf__ul listf__footer">
         <h3 className="listf__h3">Categorias</h3>
-        {brand?.category &&
-          brand.category.map((list) => (
-            <li key={list?.id}>
-              <span className="listf__span">{list?.name}</span>
-            </li>
-          ))}
+        <div className="footer__category">
+          <AnimationList
+            column
+            viewDown
+            list={brand?.category as CategoryBrand[]}
+            viewListProduct
+            down
+          />
+        </div>
       </ul>
     </section>
   );
