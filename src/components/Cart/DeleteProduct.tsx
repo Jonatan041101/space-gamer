@@ -3,6 +3,7 @@ import { DeleteProductCartMutation } from '@/__generated__/graphql-types';
 import Icons from '@/atoms/Icons';
 import { useBearStore } from '@/store/store';
 import { DELETE_PRODUCT_TO_CART } from '@/utils/graphql/query';
+import { toastNotify } from '@/utils/notify';
 import { useMutation } from '@apollo/client';
 import React from 'react';
 interface Props {
@@ -14,6 +15,7 @@ export default function DeleteProduct({ id }: Props) {
     DELETE_PRODUCT_TO_CART
   );
   const handleClickDeleteCart = async () => {
+    const product = cart.find((product) => product.product?.id == id);
     const restCart = cart.filter((product) => product.product?.id !== id);
     handleAddToCart(restCart);
     if (user.hasOwnProperty('email')) {
@@ -24,6 +26,7 @@ export default function DeleteProduct({ id }: Props) {
         },
       });
     }
+    toastNotify(`📌 ${product?.product?.name} eliminado del carrito`); // Arreglar
   };
 
   return (

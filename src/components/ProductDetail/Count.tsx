@@ -2,9 +2,10 @@ import { Products } from '@/__generated__/graphql-types';
 import { ProductToCart } from '@/store/slices/cart';
 import { useBearStore } from '@/store/store';
 import { utilExistProduct } from '@/utils/filters';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Counter from './Counter';
 import useAddCart from '@/hooks/useAddCart';
+import { toastNotify } from '@/utils/notify';
 
 interface Props {
   product: Products;
@@ -18,6 +19,7 @@ export default function Count({ product }: Props) {
   const handleAddCart = async () => {
     const copyCart = [...cart];
     const existProduct = utilExistProduct(copyCart, product.id);
+    toastNotify(`📌 ${product.name} agregado al carrito`); // Arreglar
     if (existProduct) {
       if (existProduct.count + count >= Number(product.stock?.count)) {
         if (product.stock?.count) {

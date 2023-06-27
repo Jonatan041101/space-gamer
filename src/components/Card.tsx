@@ -11,7 +11,8 @@ import { useBearStore } from '@/store/store';
 import { utilExistProduct } from '@/utils/filters';
 import { handleAddStrSubUrl } from './ListSubProducts';
 import useAddCart from '@/hooks/useAddCart';
-
+import { toast } from 'react-toastify';
+import { toastNotify } from '@/utils/notify';
 interface Props {
   product: Products;
   isAbilitedClick: boolean;
@@ -34,6 +35,7 @@ export default function Card({ product, isAbilitedClick }: Props) {
   const handleAddToCar = () => {
     const copyCart = [...cart];
     const existProduct = utilExistProduct(copyCart, product?.id);
+
     if (existProduct) {
       if (existProduct.count + count >= Number(product.stock?.count)) {
         return;
@@ -53,6 +55,7 @@ export default function Card({ product, isAbilitedClick }: Props) {
         setCount(0);
       }, 500);
     }
+    toastNotify(`📌 ${product.name} agregado al carrito`);
     if (!existProduct) {
       const productCart = {
         product,

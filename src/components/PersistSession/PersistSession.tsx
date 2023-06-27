@@ -14,8 +14,9 @@ interface PersistLogin {
 }
 export default function PersistSession() {
   const [getLogin] = useLazyQuery<GetLoginUserQuery>(GET_LOGIN_USER);
-  const { user, registerUser, addFilterCategory, handleAddToCart } =
+  const { user, cart, registerUser, addFilterCategory, handleAddToCart } =
     useBearStore((state) => state);
+  console.log({ cart });
 
   useEffect(() => {
     if (user.email) {
@@ -41,7 +42,13 @@ export default function PersistSession() {
 
         if (data?.loginUser) {
           registerUser(data?.loginUser as UserSlice);
-          handleAddToCart(data?.loginUser?.cart.products as ProductToCart[]);
+          const productToCart = data?.loginUser?.cart?.products?.map(
+            (product) => ({
+              count: product?.count,
+              product: product?.product,
+            })
+          ) as ProductToCart[];
+          handleAddToCart(productToCart);
         }
       };
       login();

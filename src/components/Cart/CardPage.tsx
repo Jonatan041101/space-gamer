@@ -8,6 +8,7 @@ import { useBearStore } from '@/store/store';
 import { useMutation } from '@apollo/client';
 import { UpdateProductToCartMutation } from '@/__generated__/graphql-types';
 import { UPDATE_PRODUCT_CART } from '@/utils/graphql/query';
+import { toastNotify } from '@/utils/notify';
 
 interface Props {
   product: ProductToCart;
@@ -37,20 +38,27 @@ export default function CardPage({ product }: Props) {
           }
         }
       }
+      console.log(
+        { add, count: productFind.count },
+        product.count,
+        product.count + add
+      );
+      if (user.hasOwnProperty('email')) {
+        clearTimeout(timerId.current);
+        timerId.current = setTimeout(async () => {
+          toastNotify(
+            `📌 Cantidad del producto ${product.product?.name} actualizado`
+          );
+          await updateProductCount({
+            variables: {
+              cartId: user.cart.id,
+              productId: product.product?.id,
+              count: product.count,
+            },
+          });
+        }, 500);
+      }
       productFind.count = product.count + add;
-    }
-
-    if (user.hasOwnProperty('email')) {
-      clearTimeout(timerId.current);
-      timerId.current = setTimeout(async () => {
-        await updateProductCount({
-          variables: {
-            cartId: user.cart.id,
-            productId: product.product?.id,
-            count: product.count + add,
-          },
-        });
-      }, 500);
     }
   };
   return (

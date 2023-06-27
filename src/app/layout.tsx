@@ -11,6 +11,8 @@ import ProductModal from '@/components/ProductModal';
 
 import PersistSession from '@/components/PersistSession/PersistSession';
 import Loader from '@/components/Loader/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -44,6 +46,9 @@ export default function RootLayout({
         onClick={closeAllModal}
       >
         <ApolloProvider client={client}>
+          <ToastContainer
+            style={{ fontSize: '.7em', fontWeight: 'normal', color: 'red' }}
+          />
           <Loader />
           <Header />
           <PersistSession />

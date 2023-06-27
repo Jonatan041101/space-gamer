@@ -9,7 +9,7 @@ export default function CardsV2() {
         <SectionProducts limit={5} skip={0} title="Ofertas" />
         <SectionProducts limit={5} skip={5} title="Nuevos" />
         <SectionProducts limit={5} skip={10} title="Top 5 de esta semana" />
-        <SectionProducts limit={5} skip={0} title="Top 5 de hoy" />
+        <SectionProducts limit={5} skip={15} title="Top 5 de hoy" />
       </div>
     </div>
   );
