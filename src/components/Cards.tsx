@@ -4,10 +4,11 @@ import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '@/utils/graphql/query';
 import { GetProductsQuery, Products } from '@/__generated__/graphql-types';
 import Card from './Card';
+import { useBearStore } from '@/store/store';
 const MAX_WIDTH = 1070;
 const TRANSLATE = -1290;
 export default function Cards() {
-  const { data } = useQuery<GetProductsQuery>(GET_PRODUCTS);
+  const { data, loading } = useQuery<GetProductsQuery>(GET_PRODUCTS);
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
@@ -17,11 +18,19 @@ export default function Cards() {
   const translateX = useRef<number>(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerCarruzel = useRef<HTMLDivElement | null>(null);
+  const { handleLoadingProducts } = useBearStore((state) => state);
   useEffect(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
   }, [timeoutRef]);
+  useEffect(() => {
+    let timerId: NodeJS.Timeout;
+    if (loading) {
+      timerId = setTimeout(() => handleLoadingProducts(false), 800);
+    }
+    return () => clearTimeout(timerId);
+  }, [loading]);
   const dragStart = (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
     setIsDragging(true);

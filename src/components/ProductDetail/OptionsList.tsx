@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Options from './Options';
-import { Description } from '@/__generated__/graphql-types';
+import { Description, Post } from '@/__generated__/graphql-types';
 import Acordeon from './Acordeon';
-interface Props {
-  description: Description;
+export interface posts {
+  post: Post[];
 }
-export type AcordeonDetail = 'descripcion' | 'consultar' | 'comentarios';
+interface Props extends posts {
+  description: Description;
+  id: string;
+}
+export type AcordeonDetail = 'descripcion' | 'comentarios';
 export interface ListAcordeon {
   id: number;
   text: AcordeonDetail;
 }
 const list: ListAcordeon[] = [
   { id: 1501, text: 'descripcion' },
-  // { id: 1502, text: 'consultar' },
   { id: 1503, text: 'comentarios' },
 ];
-export default function OptionsList({ description }: Props) {
+export default function OptionsList({ description, post, id }: Props) {
   const [acordeon, setAcordeon] = useState<AcordeonDetail>('descripcion');
   const handleChangePageAcordeon = (acordeon: AcordeonDetail) => {
     setAcordeon(acordeon);
@@ -32,7 +35,12 @@ export default function OptionsList({ description }: Props) {
           />
         ))}
       </div>
-      <Options acordeon={acordeon} description={description} />
+      <Options
+        id={id}
+        acordeon={acordeon}
+        description={description}
+        post={post}
+      />
     </div>
   );
 }

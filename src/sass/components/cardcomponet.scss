@@ -1,0 +1,36 @@
+.cardcomponent {
+  box-shadow: 0 0 0 1px #ededed;
+  // @include flex(column, nowrap, center, center, 0.8em);
+  // padding: 0.8em 0;
+  // width: 200px;
+  // height: 200px;
+  &__img {
+    width: 100%;
+    height: 10em;
+    @include flex(column, nowrap, center, center, 0);
+  }
+  &__image {
+    width: 8em;
+    height: 8em;
+    object-fit: contain;
+  }
+  &__more {
+    @include flex(column, nowrap, center, center, 0);
+    position: relative;
+    z-index: 5;
+    font-weight: normal;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.4em 0;
+    font-size: 0.9em;
+    &:hover {
+      background: #ebebeb;
+    }
+  }
+  &__counter {
+    width: 90%;
+    margin: auto;
+    display: flex;
+  }
+}

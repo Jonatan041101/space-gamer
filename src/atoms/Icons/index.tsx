@@ -12,6 +12,7 @@ import Whatsapp from './Whatsapp';
 import Clock from './Clock';
 import Zoom from './Zoom';
 import Close from './Close';
+import Filters from './Filters';
 export type IconType =
   | 'square'
   | 'search'
@@ -25,7 +26,8 @@ export type IconType =
   | 'wsp'
   | 'location'
   | 'zoom'
-  | 'close';
+  | 'close'
+  | 'Filters';
 
 interface Props {
   icon: IconType;
@@ -34,6 +36,7 @@ interface Props {
 export default function Icons({ icon }: Props) {
   return (
     <>
+      {icon === 'Filters' && <Filters />}
       {icon === 'square' && <Square />}
       {icon === 'close' && <Close />}
       {icon === 'search' && <Search />}

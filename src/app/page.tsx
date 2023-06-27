@@ -6,7 +6,6 @@ import Title from '@/components/Title';
 import MiniBanner from '@/components/MiniBanner';
 import CardsV2 from '@/components/CardsV2';
 import CarruzelBrand from '@/components/CarruzelBrand/CarruzelBrand';
-import ProductModal from '@/components/ProductModal';
 
 export default function Home() {
   return (

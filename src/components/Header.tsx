@@ -1,16 +1,14 @@
 import Input from '@/atoms/Input';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { logo } from '@/utils/cloudinary';
 import Link from 'next/link';
 import PositionFixed from './PositionFixed';
 import { useBearStore } from '@/store/store';
-import User from './User/User';
 
 export type Fixed = 'static' | 'fixed';
 
 export default function Header() {
-  // const [pos, setPos] = useState<Fixed>('static');
   const { handleChangeFix, fixedMenu } = useBearStore((state) => state);
   const fixedRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {

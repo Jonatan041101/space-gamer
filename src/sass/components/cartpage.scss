@@ -1,9 +1,59 @@
 .cartpage {
+  @include flex(column, wrap, center, center, 0em);
   background: $background;
   color: $color-li;
   padding: 1em 0.5em;
   width: 100%;
-  @include flex(column, wrap, center, center, 0em);
+  &__spinner {
+    position: relative;
+    z-index: 100;
+  }
+  &__modal {
+    @include flex(column, nowrap, center, center, 1em);
+    position: relative;
+    background: #fff;
+    width: 30em;
+    height: 30em;
+    padding: 1em;
+    &--container {
+      padding: 0;
+    }
+    &--article {
+      padding: 0.5em;
+    }
+  }
+  &__buyss {
+    position: relative;
+    width: 100%;
+  }
+  &__mercadopago {
+    display: block;
+    background: $mercadopago-color;
+    color: #fff;
+    width: 100%;
+    padding: 0.9em 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: 0.5s ease;
+    text-align: center;
+    &:hover {
+      background: #007bb0;
+    }
+  }
+  &__message {
+    width: 100%;
+    position: absolute;
+    top: 200%;
+    color: $color-error;
+    text-align: center;
+  }
+  &__preferences {
+    height: 3em;
+    width: 100%;
+  }
+  &__text {
+    font-size: 0.85em;
+  }
   &__page {
     width: 100%;
     max-width: 1170px;

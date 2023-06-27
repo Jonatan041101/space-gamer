@@ -2,9 +2,11 @@
 import InputSquare from '@/atoms/InputSquare';
 import { RegisterUser } from '@/types/types';
 import React, { useState } from 'react';
+import { HandlerErrorRegister } from './Register';
 
 interface Props {
   register: RegisterUser;
+  errors: HandlerErrorRegister;
   handleChange: (
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -16,6 +18,7 @@ export default function FormRegister({
   register,
   textButton,
   all,
+  errors,
   handleChange,
   handleRegisterUser,
 }: Props) {
@@ -26,6 +29,7 @@ export default function FormRegister({
         labelText="Email"
         placeholder=""
         name="email"
+        err={errors.email}
         value={register.email}
         handleChange={handleChange}
       />
@@ -33,6 +37,7 @@ export default function FormRegister({
         input
         labelText="Contraseña"
         placeholder=""
+        err={errors.password}
         value={register.password}
         name="password"
         handleChange={handleChange}
@@ -43,6 +48,7 @@ export default function FormRegister({
           labelText="Nombre"
           placeholder=""
           name="name"
+          err={errors.name}
           value={register.name}
           handleChange={handleChange}
         />
@@ -50,6 +56,7 @@ export default function FormRegister({
           input
           labelText="Apellido"
           placeholder=""
+          err={errors.surName}
           value={register.surName}
           name="surName"
           handleChange={handleChange}
@@ -60,6 +67,7 @@ export default function FormRegister({
         labelText="Telefono"
         placeholder=""
         name="phone"
+        err={errors.phone}
         value={register.phone}
         handleChange={handleChange}
       />
@@ -67,6 +75,7 @@ export default function FormRegister({
         input
         labelText="Direccion"
         placeholder=""
+        err={errors.address}
         value={register.address}
         name="address"
         handleChange={handleChange}
@@ -77,6 +86,7 @@ export default function FormRegister({
       >
         {textButton}
       </button>
+      <span className="userpage__error">{errors.form}</span>
     </form>
   );
 }

@@ -33,10 +33,8 @@ export default function SquareTitle({
     useBearStore((state) => state);
 
   const clickLink = async () => {
-    console.log('HOLA MUNDO', { isFilter: link.isFilter });
     if (link.isFilter) {
       const { data } = await getCategory({ variables: { name: link.name } });
-      console.log(data);
       if (data?.searchCategory) {
         handleFilterCB(
           link.name,

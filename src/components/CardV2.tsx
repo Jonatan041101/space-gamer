@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import SquareIcon from './SquareIcon';
 import { Products } from '@/__generated__/graphql-types';

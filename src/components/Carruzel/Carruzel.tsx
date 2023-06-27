@@ -5,9 +5,10 @@ import { Banner, GetBannerQuery } from '@/__generated__/graphql-types';
 import { GET_BANNER } from '@/utils/graphql/query';
 import BannerC from './BannerC';
 import useSliderMouse from '@/hooks/useSliderMouse';
+import { useBearStore } from '@/store/store';
 export default function Carruzel() {
   const { data, loading } = useQuery<GetBannerQuery>(GET_BANNER);
-
+  const { handleLoadingBanner } = useBearStore((state) => state);
   const {
     banner,
     // left,
@@ -20,11 +21,14 @@ export default function Carruzel() {
     handleMoveEndCarruzel,
   } = useSliderMouse();
   useEffect(() => {
+    let timerId: NodeJS.Timeout;
     if (!loading) {
       if (data?.banner) {
+        timerId = setTimeout(() => handleLoadingBanner(false), 800);
         changeBanner(data.banner as Banner[]);
       }
     }
+    return () => clearTimeout(timerId);
   }, [loading]);
   return (
     <div className="banner">

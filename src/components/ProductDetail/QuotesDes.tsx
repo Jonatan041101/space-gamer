@@ -8,6 +8,8 @@ import TableQuotes from './TableQuotes';
 import { ListModal } from '../Footer';
 import { methodBuy, sendProducts } from '@/utils/cloudinary';
 import ListOption from './ListOption';
+import Image from 'next/image';
+import CardV2 from '../CardV2';
 interface Props {
   data?: Products;
 }
@@ -45,6 +47,11 @@ export default function QuotesDes({ data }: Props) {
             </Link>
           </BtnChild>
         </div>
+      </div>
+      <div>
+        {data?.product?.map((product) => (
+          <CardV2 key={product?.id} product={product as Products} />
+        ))}
       </div>
       <TableQuotes quotes={data?.quotes as Quote[]} />
       {listOptions.map((list) => (

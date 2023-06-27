@@ -7,6 +7,7 @@ interface Props {
   value: string;
   name?: NameRegister;
   placeholder: string;
+  err?: string;
   handleChange: (
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -16,6 +17,7 @@ export default function InputSquare({
   input,
   labelText,
   value,
+  err,
   placeholder,
   name,
   handleChange,
@@ -39,6 +41,7 @@ export default function InputSquare({
             className="inputsquare__input inputsquare__textarea"
           />
         )}
+        <span className="inputsquare__err">{err}</span>
       </label>
     </div>
   );

@@ -110,10 +110,10 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
-i{
+i {
   display: block;
 }
 /* (Opcional) Configuramos el texto que seleccionamos */
@@ -133,10 +133,10 @@ label {
   font-size: inherit;
   hyphens: auto;
   background-color: transparent;
-  color: inherit;
+  // color: inherit;
   display: block;
   /* (Opcional) */
-  appearance: none;
+  // appearance: none;
 }
 
 /* Reseteamos las tablas */

@@ -37,10 +37,11 @@
   }
   &__on {
     font-size: 0.8em;
-    @include flex(column, nowrap, center, center, 0);
+    @include flex(column, nowrap, flex-start, flex-start, 0);
+    width: 100%;
     &--email {
       width: 100%;
-      @include flex(row, nowrap, center, center, 0.5em);
+      @include flex(row, nowrap, flex-start, flex-start, 0.5em);
       padding: 1em 0.5em;
       border-bottom: 1px solid #ebebeb;
       &:hover {
@@ -49,6 +50,9 @@
     }
     &--i {
       width: 1em;
+      & svg {
+        width: 1em;
+      }
     }
     &--exit {
       width: 100%;
@@ -57,6 +61,7 @@
       text-align: left;
       font-size: 1em;
       padding: 1em 0.5em;
+      color: $color-li;
       &:hover {
         background: $color-hover--list;
       }

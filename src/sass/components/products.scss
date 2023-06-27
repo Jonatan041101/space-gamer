@@ -17,9 +17,12 @@
   }
   &__flex {
     @include flex(row, nowrap, flex-start, flex-start, 1em);
+    margin: 0 0 3em 0;
   }
   &__cards {
     @include flex(row, wrap, center, flex-start, 1em);
+    align-content: flex-start;
+    min-height: 100vh;
   }
   &__all {
     flex-grow: 1;
@@ -29,7 +32,7 @@
   }
   &__column {
     width: 100%;
-    @include flex(column, nowrap, center, center, 0.5em);
+    @include flex(column, nowrap, center, center, 1em);
   }
   &__count {
     width: 100%;
@@ -38,7 +41,7 @@
   }
   &__length {
     width: 100%;
-    max-width: 13em;
+    // max-width: 13em;
   }
   &__image {
     width: 15em;
@@ -51,5 +54,35 @@
     font-size: 2.4em;
     font-weight: bold;
     letter-spacing: 1px;
+  }
+
+  &__filters {
+    display: block;
+    @include responsive(700px) {
+      display: none;
+    }
+    &--container {
+      cursor: pointer;
+      border: 1px solid $border-gray;
+      padding: 0 0.3em;
+      @include flex(row, nowrap, center, center, 0);
+      &:hover {
+        background: #ebebeb;
+      }
+    }
+    &--icon {
+      width: 2em;
+      box-sizing: content-box;
+      padding: 0.2em;
+    }
+    &--mobile {
+      display: block;
+      font-size: 0.9em;
+      width: 100%;
+      height: 100vh;
+    }
+    &--p {
+      width: 3.5em;
+    }
   }
 }

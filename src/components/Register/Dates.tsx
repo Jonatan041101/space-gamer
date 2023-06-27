@@ -1,9 +1,16 @@
 import { UserSlice } from '@/store/slices/user';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Modal from '../Modal/Modal';
 import FormRegister from './FormRegister';
 import Icons from '@/atoms/Icons';
+import { RegisterUser } from '@/types/types';
+import useRegister from '@/hooks/useRegister';
+import { useMutation } from '@apollo/client';
+import { UpdateUserMutation } from '@/__generated__/graphql-types';
+import { UPDATE_USER } from '@/utils/graphql/query';
+import { HandlerErrorRegister } from './Register';
+import { INITIAL_STATE } from './user_register';
 
 interface Props {
   user: UserSlice;
@@ -11,8 +18,50 @@ interface Props {
 
 export default function Dates({ user }: Props) {
   const [view, setView] = useState<boolean>(false);
+  const [update, setUpdate] = useState<RegisterUser>({
+    name: user.name,
+    surName: user.surName,
+    password: user.password,
+    email: user.email,
+    phone: user.phone,
+    address: user.address,
+  });
+  const [updateUser] = useMutation<UpdateUserMutation>(UPDATE_USER);
+  const { errors, handlerErrorRegister, handlerForm, validateSendForm } =
+    useRegister();
+  const cacheErrors = useRef<HandlerErrorRegister>({
+    ...INITIAL_STATE,
+    form: '',
+  });
+
   const handleClickOpenModal = () => {
     setView(!view);
+  };
+  const handleUpdateUser = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    try {
+      validateSendForm(cacheErrors.current, update);
+      const userApollo = await updateUser({
+        variables: {
+          name: update.name,
+          surName: update.surName,
+          password: update.password,
+          email: update.email,
+          phone: update.phone,
+          address: update.address,
+        },
+      });
+    } catch (error) {
+      const ERROR = error as Error;
+      handlerForm(ERROR.message);
+    }
+  };
+  const handleChange = (
+    evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = evt.target;
+    handlerErrorRegister(name, value, cacheErrors);
+    setUpdate({ ...update, [name]: value });
   };
   return (
     <>
@@ -70,12 +119,11 @@ export default function Dates({ user }: Props) {
               Manten tu información actualizada
             </h2>
             <FormRegister
-              register={user}
+              errors={errors}
+              register={update}
               textButton="Guardar"
-              handleChange={(
-                evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-              ) => {}}
-              handleRegisterUser={(evt: React.FormEvent<HTMLFormElement>) => {}}
+              handleChange={handleChange}
+              handleRegisterUser={handleUpdateUser}
               all
             />
           </div>

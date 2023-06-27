@@ -9,7 +9,7 @@ export default function UserLink({ text }: Props) {
   const router = useRouter();
   const { handleAddHistoryLink } = useBearStore((state) => state);
   const handleLinkUser = () => {
-    const allLinks = handleAddStrUrl('Usuario');
+    const allLinks = handleAddStrUrl('Usuario', false); //TODO a true ? ;
 
     handleAddHistoryLink(allLinks);
     router.push('/user');

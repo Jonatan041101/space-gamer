@@ -1,6 +1,6 @@
 'use client';
 import Container from '@/components/Container';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FormRegister from './FormRegister';
 import { PostUserMutation } from '@/__generated__/graphql-types';
 import { UserSlice } from '@/store/slices/user';
@@ -8,6 +8,8 @@ import { useBearStore } from '@/store/store';
 import { RegisterUser } from '@/types/types';
 import { CREATE_USER } from '@/utils/graphql/query';
 import { useMutation } from '@apollo/client';
+import { INITIAL_STATE } from './user_register';
+import useRegister from '@/hooks/useRegister';
 export type NameRegister =
   | 'email'
   | 'password'
@@ -15,21 +17,28 @@ export type NameRegister =
   | 'surName'
   | 'phone'
   | 'address';
+
+export type HandlerErrorRegister = RegisterUser & {
+  form?: string;
+};
+
 export default function Register() {
   const { registerUser } = useBearStore((state) => state);
   const [createUser] = useMutation<PostUserMutation>(CREATE_USER);
-  const [register, setRegister] = useState<RegisterUser>({
-    email: '',
-    name: '',
-    surName: '',
-    address: '',
-    password: '',
-    phone: '',
+  const [register, setRegister] = useState<RegisterUser>(INITIAL_STATE);
+  const { errors, handlerErrorRegister, validateSendForm, handlerForm } =
+    useRegister();
+  const cacheErrors = useRef<HandlerErrorRegister>({
+    ...INITIAL_STATE,
+    form: '',
   });
+
   const handleChange = (
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value, name } = evt.target;
+
+    handlerErrorRegister(name, value, cacheErrors);
     setRegister({
       ...register,
       [name]: value,
@@ -37,18 +46,26 @@ export default function Register() {
   };
   const handleRegisterUser = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const postUser = await createUser({
-      variables: {
-        name: register.name,
-        surName: register.surName,
-        email: register.email,
-        password: register.password,
-        phone: register.phone,
-        address: register.address,
-      },
-    });
-    registerUser(postUser.data?.createUser as UserSlice);
+    try {
+      validateSendForm(cacheErrors.current, register);
+      const postUser = await createUser({
+        variables: {
+          name: register.name,
+          surName: register.surName,
+          email: register.email,
+          password: register.password,
+          phone: register.phone,
+          address: register.address,
+        },
+      });
+
+      registerUser(postUser.data?.createUser as UserSlice);
+    } catch (error) {
+      const ERROR = error as Error;
+      handlerForm(ERROR.message);
+    }
   };
+
   return (
     <Container title="Registro">
       <div className="userpage">
@@ -64,6 +81,7 @@ export default function Register() {
           handleRegisterUser={handleRegisterUser}
           register={register}
           textButton="Crear"
+          errors={errors}
         />
       </div>
     </Container>

@@ -62,7 +62,10 @@ export default function Row({ orde }: Props) {
                         width={50}
                         height={50}
                       />
-                      {product.product?.name.slice(0, 20)}...
+                      <div className="orders__productss">
+                        {product.product?.name}
+                      </div>
+                      <p className="orders__counts">× {product.count}</p>
                     </div>
                     <div className="orders__price">
                       {parsePriceValueMoneyARS(product.product?.price)}

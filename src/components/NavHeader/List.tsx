@@ -10,6 +10,7 @@ export default function List({ data }: Props) {
   const handleOpenView = () => {
     setView(!view);
   };
+
   return (
     <article className="menu__article">
       <div className="menu__h4" onClick={handleOpenView}>
@@ -25,6 +26,7 @@ export default function List({ data }: Props) {
         <AnimationList
           down
           listDown
+          brandFilter={data?.brand}
           list={data?.dates as CategoryBrand[]}
           viewListProduct
           column

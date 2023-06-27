@@ -7,9 +7,8 @@ import useCategory from '@/hooks/useCategory';
 export default function ProductsList() {
   const data = useCategory();
 
-  const { handleViewListProduct, viewListProduct } = useBearStore(
-    (state) => state
-  );
+  const { handleViewListProduct, handleLoadingCategory, viewListProduct } =
+    useBearStore((state) => state);
 
   const refIcon = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -31,7 +30,13 @@ export default function ProductsList() {
       }
     }
   }, [viewListProduct]);
-
+  useEffect(() => {
+    let timerId: NodeJS.Timeout;
+    if (data) {
+      timerId = setTimeout(() => handleLoadingCategory(false), 800);
+    }
+    return () => clearTimeout(timerId);
+  }, [data]);
   const handleViewProducts = (evt: React.MouseEvent<HTMLDivElement>) => {
     evt.stopPropagation();
     handleViewListProduct(!viewListProduct);

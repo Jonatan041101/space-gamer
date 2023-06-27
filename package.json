@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
+    "@mercadopago/sdk-react": "^0.0.12",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",

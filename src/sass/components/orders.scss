@@ -62,11 +62,13 @@
   &__array {
     width: 100%;
     @include flex(column, nowrap, flex-start, flex-start, 1em);
+    height: calc(100% - 30px);
   }
   &__map {
     @include flex(column, nowrap, flex-start, flex-start, 0.5em);
     width: 100%;
     overflow: auto;
+    flex-grow: 3;
   }
   &__bil {
     width: 100%;
@@ -85,5 +87,11 @@
     width: 100%;
     align-self: flex-end;
     @include flex(row, nowrap, space-between, center, 0);
+  }
+
+  &__productss {
+    width: 18em;
+  }
+  &__counts {
   }
 }

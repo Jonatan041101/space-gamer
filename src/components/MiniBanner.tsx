@@ -5,7 +5,7 @@ import { miniBannerArmando } from '@/utils/cloudinary';
 import Image from 'next/image';
 type LinksMiniBanner = Omit<ProductsMap, 'name'>;
 export default function MiniBanner() {
-  const miniBannerMap: LinksMiniBanner[] = [
+  const miniBannerMap: Omit<LinksMiniBanner, 'count'>[] = [
     { id: 380, image: miniBannerPs5VsXbox, link: '/' },
     { id: 381, image: miniBannerArmando, link: '/' },
   ];

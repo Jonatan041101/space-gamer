@@ -25,7 +25,7 @@ interface Props {
 export default function AnimationList({
   list,
   viewListProduct,
-  brand = false,
+  brand,
   brandFilter = false,
   column = false,
   down = false,

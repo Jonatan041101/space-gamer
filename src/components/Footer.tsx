@@ -12,39 +12,39 @@ export interface ListModal {
   list?: ListModal[];
   view?: boolean;
 }
-
+export const modal = {
+  id: 400,
+  image: sendProducts,
+  view: true,
+  title: 'Realizamos envios',
+  text: 'Nuestros medios de envios disponibles',
+  titleModal: 'Estos son nuestro medios de envio',
+  list: [
+    {
+      id: 405,
+      title: 'Retirar en Local',
+      text: 'Retira directamente por nuestro Local.',
+    },
+    {
+      id: 406,
+      title: 'Envio dentro de Circunvalacion (Córdoba Capital)',
+      text: 'Valido para Córdoba Capital dentro del anillo',
+    },
+    {
+      id: 407,
+      title: 'Envió a Sucursal (Andreani)',
+      text: 'Envió por andreani (Demora de 3 a 5 días) Solo puede recibir la compra el titular de la tarjeta o cuenta con la que se realizo el pago.',
+    },
+    {
+      id: 408,
+      title: 'Envió a Domicilio (Andreani)',
+      text: 'Envió por andreani (Demora de 3 a 7 días) Solo puede recibir la compra el titular de la tarjeta o cuenta con la que se realizo el pago.',
+    },
+  ],
+};
 export default function Footer() {
   const listModal: ListModal[] = [
-    {
-      id: 400,
-      image: sendProducts,
-      view: true,
-      title: 'Realizamos envios',
-      text: 'Nuestros medios de envios disponibles',
-      titleModal: 'Estos son nuestro medios de envio',
-      list: [
-        {
-          id: 405,
-          title: 'Retirar en Local',
-          text: 'Retira directamente por nuestro Local.',
-        },
-        {
-          id: 406,
-          title: 'Envio dentro de Circunvalacion (Córdoba Capital)',
-          text: 'Valido para Córdoba Capital dentro del anillo',
-        },
-        {
-          id: 407,
-          title: 'Envió a Sucursal (Andreani)',
-          text: 'Envió por andreani (Demora de 3 a 5 días) Solo puede recibir la compra el titular de la tarjeta o cuenta con la que se realizo el pago.',
-        },
-        {
-          id: 408,
-          title: 'Envió a Domicilio (Andreani)',
-          text: 'Envió por andreani (Demora de 3 a 7 días) Solo puede recibir la compra el titular de la tarjeta o cuenta con la que se realizo el pago.',
-        },
-      ],
-    },
+    modal,
     {
       id: 401,
       image: methodBuy,

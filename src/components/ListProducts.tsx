@@ -3,13 +3,11 @@ import React from 'react';
 import Icons from '@/atoms/Icons';
 import { motion } from 'framer-motion';
 import { variantsOpacity } from './NavHeader/AnimationList';
-import { Category, Products, SubCategory } from '@/__generated__/graphql-types';
+import { Category, SubCategory } from '@/__generated__/graphql-types';
 import { useRouter } from 'next/navigation';
-import { useBearStore } from '@/store/store';
 import { LinksPrev } from './ProductDetail/LinksPrevProduct';
 import ListSubProducts from './ListSubProducts';
-import useGetProducts from '@/hooks/useGetProducts';
-import { orderProductsBeforeGetDB } from '@/utils/filters';
+import useLinksFilter from '@/hooks/useLinksFilter';
 interface Props {
   li: Category & { image?: string };
   index: number;
@@ -47,33 +45,16 @@ export default function ListProducts({
 }: Props) {
   const router = useRouter();
 
-  const { handleGetProductsDB } = useGetProducts();
-
-  const { handleAddHistoryLink, handleFilterCB, handleAddCards, typeOrder } =
-    useBearStore((state) => state);
+  const { filterProductsWithLink } = useLinksFilter();
   const handleFilter = async () => {
     router.push('/products');
-    const allLinks = handleAddStrUrl(li.name, false);
-    handleAddHistoryLink(allLinks);
     if (brand) {
       if (li.image) {
-        handleFilterCB(null, null, li.name, li.image, null);
-        const products = await handleGetProductsDB(null, null, li.name);
-        orderProductsBeforeGetDB(
-          typeOrder,
-          products.data?.getProductFilter as Products[],
-          handleAddCards
-        );
+        return filterProductsWithLink(li.name, null, li.image);
       }
       return;
     }
-    handleFilterCB(li.name, null, null, null, li);
-    const products = await handleGetProductsDB(li.name, null, null);
-    orderProductsBeforeGetDB(
-      typeOrder,
-      products.data?.getProductFilter as Products[],
-      handleAddCards
-    );
+    filterProductsWithLink(li.name, null);
   };
   return (
     <motion.li

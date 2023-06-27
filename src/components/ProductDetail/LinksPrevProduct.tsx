@@ -8,8 +8,10 @@ export interface LinksPrev {
   name: string;
   isFilter?: boolean;
 }
-enum Storage {
+export enum Storage {
   LinksPrev = 'LinksPrev',
+  Category = 'Category',
+  LOGIN = 'Login',
 }
 export default function LinksPrevProduct() {
   const { links, handleAddHistoryLink } = useBearStore((state) => state);

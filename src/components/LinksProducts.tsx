@@ -1,6 +1,6 @@
 'use client';
 import { GetCountProductsHomeQuery } from '@/__generated__/graphql-types';
-import { useBearStore } from '@/store/store';
+import useLinksFilter from '@/hooks/useLinksFilter';
 import { auricular, gabinete, monitor, pcCombo } from '@/utils/cloudinary';
 import { GET_COUNT_PRODUCT_HOME } from '@/utils/graphql/query';
 import { useQuery } from '@apollo/client';
@@ -15,11 +15,11 @@ export interface ProductsMap {
   count: number;
 }
 export default function LinksProducts() {
-  const { handleFilterCB } = useBearStore((state) => state);
   const router = useRouter();
   const { data } = useQuery<GetCountProductsHomeQuery>(GET_COUNT_PRODUCT_HOME);
-  const handleFilters = (category: string) => {
-    handleFilterCB(category, null, null, null, null);
+  const { filterProductsWithLink } = useLinksFilter();
+  const handleFilters = async (category: string) => {
+    filterProductsWithLink(category, null);
     router.push('/products');
   };
 

@@ -1,6 +1,5 @@
 'use client';
-import { parsePriceValueMoneyARS } from '@/utils/parses';
-import React, { useState } from 'react';
+import React from 'react';
 import Wsp from './Wsp';
 import Envios from './Envios';
 import Price from './Price';

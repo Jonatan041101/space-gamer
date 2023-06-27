@@ -14,3 +14,10 @@
   @include flex(row, nowrap, flex-end, flex-end, 0);
   padding: 0;
 }
+[data-modal-start='true'] {
+  @include flex(row, nowrap, flex-start, flex-start, 0);
+  padding: 0;
+}
+[data-super='true'] {
+  z-index: 70;
+}

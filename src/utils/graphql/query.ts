@@ -4,6 +4,7 @@ const FRAGMENT_LIMIT_DETAIL_PRODUCT = gql`
   fragment ProductsLimit on Products {
     id
     name
+    motherBoard
     image {
       image
     }
@@ -17,6 +18,50 @@ const FRAGMENT_LIMIT_DETAIL_PRODUCT = gql`
     }
     category {
       name
+    }
+  }
+`;
+const FRAGMENT_USER = gql`
+  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
+  fragment UserAll on User {
+    id
+    name
+    surName
+    email
+    password
+    address
+    img
+    phone
+    order {
+      date
+      id
+      status
+      bill {
+        id
+        product {
+          buy
+          count
+          product {
+            ...ProductsLimit
+            brand {
+              name
+            }
+          }
+        }
+      }
+    }
+    cart {
+      id
+      products {
+        count
+        buy
+        product {
+          ...ProductsLimit
+          brand {
+            name
+          }
+        }
+      }
     }
   }
 `;
@@ -77,6 +122,7 @@ export const GET_BRAND = gql`
   }
 `;
 export const PRODUCT_DETAIL = gql`
+  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
   query GetProductDetail($name: String!) {
     getProduct(name: $name) {
       id
@@ -86,6 +132,16 @@ export const PRODUCT_DETAIL = gql`
       brand {
         id
         name
+      }
+      product {
+        ...ProductsLimit
+      }
+      post {
+        date
+        id
+        name
+        text
+        rating
       }
       subCategory {
         name
@@ -154,6 +210,7 @@ export const PRODUCT_SEARCH = gql`
   }
 `;
 export const CREATE_USER = gql`
+  ${FRAGMENT_USER}
   mutation PostUser(
     $name: String!
     $surName: String!
@@ -172,17 +229,7 @@ export const CREATE_USER = gql`
       phone: $phone
       img: $img
     ) {
-      id
-      name
-      email
-      password
-      address
-      img
-      phone
-      surName
-      cart {
-        id
-      }
+      ...UserAll
     }
   }
 `;
@@ -206,74 +253,39 @@ export const UPDATE_PRODUCT_CART = gql`
 `;
 
 export const GET_LOGIN_USER = gql`
-  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
+  ${FRAGMENT_USER}
   query GetLoginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
-      id
-      name
-      surName
-      email
-      password
-      address
-      img
-      phone
-      order {
-        date
-        id
-        status
-        bill {
-          id
-          product {
-            buy
-            count
-            product {
-              ...ProductsLimit
-              brand {
-                name
-              }
-            }
-          }
-        }
-      }
-      cart {
-        id
-        products {
-          count
-          buy
-          product {
-            ...ProductsLimit
-            brand {
-              name
-            }
-          }
-        }
-      }
+      ...UserAll
     }
   }
 `;
-
+export const UPDATE_USER = gql`
+  ${FRAGMENT_USER}
+  mutation UpdateUser(
+    $name: String!
+    $surName: String!
+    $email: String!
+    $password: String!
+    $address: String!
+    $phone: String!
+  ) {
+    updateUser(
+      name: $name
+      surName: $surName
+      email: $email
+      password: $password
+      address: $address
+      phone: $phone
+    ) {
+      ...UserAll
+    }
+  }
+`;
 export const MERCADO_PAGO = gql`
-  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
-
   mutation PostMercadoPago($userId: String!, $cartId: String!) {
     mercadoPago(cartId: $cartId, userId: $userId) {
-      status
-      id
-      date
-      bill {
-        id
-        product {
-          buy
-          count
-          product {
-            ...ProductsLimit
-
-            brand {
-              name
-            }
-          }
-        }
-      }
+      preferenceId
     }
   }
 `;
@@ -290,5 +302,49 @@ export const GET_CATEGORY_SEARCH = gql`
         name
       }
     }
+  }
+`;
+export const CREATE_POST = gql`
+  mutation CreatePost(
+    $productId: String!
+    $name: String!
+    $text: String!
+    $rating: Int!
+  ) {
+    addPostToProduct(
+      productId: $productId
+      name: $name
+      text: $text
+      rating: $rating
+    ) {
+      name
+      date
+      id
+      rating
+      text
+    }
+  }
+`;
+export const GET_PRODUCT_CATEGORY_SUB = gql`
+  ${FRAGMENT_LIMIT_DETAIL_PRODUCT}
+  query GetProductCategorySub($name: String!, $motherBoard: String) {
+    getCategoryOrSub(name: $name, motherBoard: $motherBoard) {
+      name
+      id
+      products {
+        ...ProductsLimit
+        subCategory {
+          name
+        }
+        brand {
+          name
+        }
+      }
+    }
+  }
+`;
+export const ARMAMENT_PC = gql`
+  mutation createArmamentProductToCart($args: [ArmamentToCart!]!) {
+    addArmamentPcToProductToCart(args: $args)
   }
 `;

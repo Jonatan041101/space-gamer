@@ -10,35 +10,75 @@ import {
   teclado,
 } from '@/utils/cloudinary';
 import Image from 'next/image';
-import { useBearStore } from '@/store/store';
 import { useRouter } from 'next/navigation';
-
+import useLinksFilter from '@/hooks/useLinksFilter';
+type Perifericos = Omit<ProductsMap, 'count'>;
+type PerifericosCategory = Perifericos & {
+  category: string;
+};
 export default function LinksComponentsPc() {
-  const linksComponentsPcMap: Omit<ProductsMap, 'count'>[] = [
+  const linksComponentsPcMap: PerifericosCategory[] = [
     {
       id: 320,
       image: mouse,
       link: '/',
-      name: 'Mouse',
+      name: 'mouse',
+      category: '',
     },
-    { id: 321, image: teclado, link: '/', name: 'teclados' },
-    { id: 322, image: joysticks, link: '/', name: 'joysticks' },
-    { id: 323, image: memoriasRam, link: '/', name: 'memorias ram' },
-    { id: 324, image: placasDeVideo, link: '/', name: 'targetas gráficas' },
-    { id: 325, image: fuente, link: '/', name: 'fuentes' },
+    {
+      id: 321,
+      image: teclado,
+      link: '/',
+      name: 'teclados',
+      category: 'periféricos',
+    },
+    {
+      id: 322,
+      image: joysticks,
+      link: '/',
+      name: 'joysticks',
+      category: 'periféricos',
+    },
+    {
+      id: 323,
+      image: memoriasRam,
+      link: '/',
+      name: 'memorias ram',
+      category: 'componentes de pc',
+    },
+    {
+      id: 324,
+      image: placasDeVideo,
+      link: '/',
+      name: 'targetas gráficas',
+      category: '',
+    },
+    {
+      id: 325,
+      image: fuente,
+      link: '/',
+      name: 'fuentes',
+      category: 'componentes de pc',
+    },
   ];
   const router = useRouter();
-  const { handleFilterCB } = useBearStore((state) => state);
-  const handlerFilter = (sub: string) => {
-    handleFilterCB('periféricos', sub, null, null, null);
+  const { filterProductsWithLink } = useLinksFilter();
+  const handlerFilter = async (sub: string, category: string) => {
     router.push('/products');
+    if (sub === 'targetas gráficas') {
+      await filterProductsWithLink(sub, null);
+      return;
+    }
+    await filterProductsWithLink(category, sub);
   };
   return (
     <div className="linkproduct">
       <section className="linkproduct__section component">
         {linksComponentsPcMap.map((componentPc) => (
           <div
-            onClick={() => handlerFilter(componentPc.name)}
+            onClick={() =>
+              handlerFilter(componentPc.name, componentPc.category)
+            }
             key={componentPc.id}
             className="component__link"
           >

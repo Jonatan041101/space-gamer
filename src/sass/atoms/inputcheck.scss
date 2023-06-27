@@ -1,0 +1,8 @@
+.inputcheck {
+  &__label {
+    @include flex(row, nowrap, center, center, 0.4em);
+  }
+
+  &__check {
+  }
+}

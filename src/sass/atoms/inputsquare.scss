@@ -4,16 +4,24 @@
   &__label {
     display: flex;
     flex-direction: column;
-    gap: 0.7em;
+    gap: 0.2em;
+    position: relative;
   }
   &__input {
     border: 1px solid #ced4da;
     width: 100%;
     outline: none;
     font-size: 0.9em;
-    padding: 0.75em;
+    padding: 0.7em;
+    color: $color-li;
   }
   &__textarea {
     height: 15em;
+  }
+  &__err {
+    position: absolute;
+    top: 100%;
+    font-size: 0.8em;
+    color: $color-error;
   }
 }

@@ -3,6 +3,7 @@ import {
   Description,
   GetProductDetailQuery,
   Image,
+  Post,
   Products,
 } from '@/__generated__/graphql-types';
 import LinksPrevProduct from '@/components/ProductDetail/LinksPrevProduct';
@@ -26,6 +27,7 @@ export default function ProductQuery({ params }: Props) {
   const { data } = useQuery<GetProductDetailQuery>(PRODUCT_DETAIL, {
     variables: { name: NAME },
   });
+
   return (
     <div className="productd">
       <div className="productd__detail">
@@ -39,6 +41,8 @@ export default function ProductQuery({ params }: Props) {
         </div>
         <OptionsList
           description={data?.getProduct?.description as Description}
+          post={data?.getProduct?.post as Post[]}
+          id={String(data?.getProduct?.id)}
         />
       </div>
     </div>

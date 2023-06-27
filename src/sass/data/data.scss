@@ -36,3 +36,28 @@
   padding: 0;
   display: none !important;
 }
+[data-article='true'] {
+  padding: 0;
+  gap: 1em;
+}
+[data-article='true'] article {
+  padding: 0.5em;
+  gap: 0.4em;
+  font-size: 0.9em;
+}
+[data-article='true'] p {
+  font-size: 0.85em;
+}
+[data-filter='true'] {
+  background: blue;
+  height: 100vh;
+}
+[data-filter='true'] > .filter__fixed {
+  height: 100%;
+}
+[data-close='true'] {
+  width: 0.8em;
+}
+[data-pad='true'] {
+  padding: 0;
+}

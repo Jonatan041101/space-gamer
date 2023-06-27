@@ -26,6 +26,7 @@ export interface Links {
     image: string | null,
     categorySelect: Category | null
   ) => void;
+  addFilterCategory: (categorySelect: Category) => void;
   handleAddCards: (cards: Products[]) => void;
 }
 export const sliceLinks: StateCreator<Links> = (set) => ({
@@ -58,6 +59,9 @@ export const sliceLinks: StateCreator<Links> = (set) => ({
       image,
       categorySelect,
     }));
+  },
+  addFilterCategory: (categorySelect) => {
+    set((state) => ({ ...state, categorySelect }));
   },
   handleFilterBrand: (cards, brand) => {
     set((state) => ({

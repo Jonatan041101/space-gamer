@@ -7,6 +7,8 @@ import { useBearStore } from '@/store/store';
 import { UserSlice } from '@/store/slices/user';
 import Icons from '@/atoms/Icons';
 import useLogin from '@/hooks/useLogin';
+import { UserLoginWithBack } from '../UserC';
+import { Storage } from '../ProductDetail/LinksPrevProduct';
 
 interface UserLogin {
   email: string;
@@ -15,11 +17,21 @@ interface UserLogin {
 
 interface Props {
   login: UserLogin;
+  errors: UserLoginWithBack;
+  cacheErrors: UserLoginWithBack;
+  handleChangeError: (err: string) => void;
   handleChange: (
     evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 }
-export default function User({ login, handleChange }: Props) {
+
+export default function User({
+  login,
+  errors,
+  cacheErrors,
+  handleChange,
+  handleChangeError,
+}: Props) {
   const { handleAddToCart, registerUser, user } = useBearStore(
     (state) => state
   );
@@ -28,21 +40,39 @@ export default function User({ login, handleChange }: Props) {
 
   const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const { data } = await getLogin({
-      variables: {
-        email: login.email,
-        password: login.password,
-      },
-    });
-    if (data && data.loginUser) {
-      registerUser(data.loginUser as UserSlice);
-      const productsCart = data.loginUser.cart.products as ProductToCart[];
-      handleAddToCart(productsCart);
+    try {
+      Object.values(cacheErrors).forEach((err) => {
+        if (typeof err === 'string') {
+          if (err.length > 0) {
+            throw new Error('Datos incorrectos');
+          }
+        }
+      });
+      const data = await getLogin({
+        variables: {
+          email: login.email,
+          password: login.password,
+        },
+      });
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+      if (data && data.data?.loginUser) {
+        registerUser(data.data.loginUser as UserSlice);
+        const productsCart = data.data.loginUser.cart
+          .products as ProductToCart[];
+        handleAddToCart(productsCart);
+      }
+    } catch (error) {
+      const ERROR = error as Error;
+      handleChangeError(ERROR.message);
     }
   };
   const handleLogout = () => {
     registerUser({} as UserSlice);
+    window.localStorage.removeItem(Storage.LOGIN);
   };
+
   return (
     <div className="user__container" onClick={(evt) => evt.stopPropagation()}>
       {user.hasOwnProperty('email') ? (
@@ -64,6 +94,7 @@ export default function User({ login, handleChange }: Props) {
             <div className="user__inputs">
               <div>
                 <InputSquare
+                  err={errors.email}
                   value={login.email}
                   handleChange={handleChange}
                   placeholder="Correo"
@@ -74,6 +105,7 @@ export default function User({ login, handleChange }: Props) {
               </div>
               <div>
                 <InputSquare
+                  err={errors.password}
                   value={login.password}
                   handleChange={handleChange}
                   placeholder="Contraseña"
@@ -85,6 +117,7 @@ export default function User({ login, handleChange }: Props) {
             </div>
             <button className="user__btn">Ingresar</button>
             <UserLink text="Regístrarme" />
+            <span className="userpage__error">{errors.form}</span>
           </form>
         </>
       )}

@@ -1,21 +1,22 @@
 import React from 'react';
 import { useEffect } from 'react';
-import useLogin from '@/hooks/useLogin';
-import { GetLoginUserQuery } from '@/__generated__/graphql-types';
+import { Category, GetLoginUserQuery } from '@/__generated__/graphql-types';
 import { GET_LOGIN_USER } from '@/utils/graphql/query';
 import { useLazyQuery } from '@apollo/client';
 import { useBearStore } from '@/store/store';
-import { UserSlice, userSlice } from '@/store/slices/user';
-enum Storage {
-  LOGIN = 'Login',
-}
+import { UserSlice } from '@/store/slices/user';
+import { Storage } from '../ProductDetail/LinksPrevProduct';
+import { ProductToCart } from '@/store/slices/cart';
+
 interface PersistLogin {
   email: string;
   password: string;
 }
 export default function PersistSession() {
   const [getLogin] = useLazyQuery<GetLoginUserQuery>(GET_LOGIN_USER);
-  const { user, registerUser } = useBearStore((state) => state);
+  const { user, registerUser, addFilterCategory, handleAddToCart } =
+    useBearStore((state) => state);
+
   useEffect(() => {
     if (user.email) {
       const saveUser: PersistLogin = {
@@ -36,10 +37,21 @@ export default function PersistSession() {
             password: dates.password,
           },
         });
-        if (data?.loginUser) registerUser(data?.loginUser as UserSlice);
+        console.log({ data });
+
+        if (data?.loginUser) {
+          registerUser(data?.loginUser as UserSlice);
+          handleAddToCart(data?.loginUser?.cart.products as ProductToCart[]);
+        }
       };
       login();
     }
+    const categoryJSON = window.localStorage.getItem(Storage.Category);
+    if (categoryJSON) {
+      const categoryFilter: Category = JSON.parse(categoryJSON);
+      addFilterCategory(categoryFilter);
+    }
   }, []);
+
   return <div></div>;
 }

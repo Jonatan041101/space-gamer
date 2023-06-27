@@ -4,7 +4,7 @@
   max-width: 10em;
   background: #fff;
   position: relative;
-  border: 1px solid #000;
+  border: 1px solid $border-gray;
   box-sizing: border-box;
   & div div i {
     color: #000;
@@ -16,7 +16,7 @@
     background: #fff;
     z-index: 50;
     left: -1px;
-    border: 1px solid #000;
+    border: 1px solid $border-gray;
     border-top: none;
     box-sizing: content-box;
   }

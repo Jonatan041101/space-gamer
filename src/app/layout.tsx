@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
 
 import PersistSession from '@/components/PersistSession/PersistSession';
+import Loader from '@/components/Loader/Loader';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -43,11 +44,11 @@ export default function RootLayout({
         onClick={closeAllModal}
       >
         <ApolloProvider client={client}>
+          <Loader />
           <Header />
           <PersistSession />
           {children}
           <ProductModal />
-
           <Footer />
         </ApolloProvider>
       </body>

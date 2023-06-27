@@ -1,6 +1,6 @@
 'use client';
 import { useBearStore } from '@/store/store';
-import React from 'react';
+import React, { useState } from 'react';
 import CardPage from '@/components/Cart/CardPage';
 import NamesTables from '@/components/Cart/NamesTables';
 import PriceCart, {
@@ -14,16 +14,21 @@ import { useMutation } from '@apollo/client';
 import { GET_PRODUCTS, MERCADO_PAGO } from '@/utils/graphql/query';
 import Modal from '@/components/Modal/Modal';
 import NonProducts from '@/components/Cart/NonProducts';
-import { UserSlice } from '@/store/slices/user';
-import { Order } from '@/types/types';
-export default function CartPage() {
-  const { cart, user, handleAddToCart, registerUser } = useBearStore(
-    (state) => state
-  );
+import { Wallet } from '@mercadopago/sdk-react';
+import '@/utils/wallets/mercadopago';
+import { modal } from '@/components/Footer';
+import ArticleFooter from '@/atoms/ArticleFooter';
+import Close from '@/atoms/Close';
+import Spinner from '@/atoms/Spinner';
 
+export default function CartPage() {
+  const { cart, user, handleAddToCart } = useBearStore((state) => state);
   const [buy, data] = useMutation<PostMercadoPagoMutation>(MERCADO_PAGO, {
     refetchQueries: [{ query: GET_PRODUCTS }],
   });
+  const [view, setView] = useState<boolean>(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [preferenceId, setPreferenceId] = useState<string | null>(null);
   const price = utilTotalPrice(cart);
   const mapQuote: Quote[] = [
     {
@@ -57,29 +62,80 @@ export default function CartPage() {
       priceComplete: price * 1.15 * 1.1 * 1.1 * 1.1 * 1.1,
     },
   ];
-  const handleBuy = async () => {
-    const newOrder = await buy({
-      variables: {
-        cartId: user.cart.id,
-        userId: user.id,
-      },
-    });
-    handleAddToCart([]);
-    if (newOrder.data && user.order) {
-      const updateUser: UserSlice = {
-        ...user,
-        order: [...user.order, newOrder.data.mercadoPago as Order],
-      };
-      registerUser(updateUser);
+  const handleBuyMercadoPago = async () => {
+    if (cart.length <= 0) {
+      setMessage('No hay productos en el carrito para comprar');
+      setTimeout(() => setMessage(null), 800);
+      return;
     }
+    try {
+      const newOrder = await buy({
+        variables: {
+          cartId: user.cart.id,
+          userId: user.id,
+        },
+      });
+      if (newOrder.data && user.order) {
+        setPreferenceId(newOrder.data.mercadoPago?.preferenceId ?? null);
+      }
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+  const handleViewListPayer = () => {
+    setView(!view);
+  };
+  const cleanCart = () => {
+    console.log('clean cart');
+    handleAddToCart([]);
+    setPreferenceId(null);
   };
   quotesTotalPrice(cart);
   return (
     <div className="cartpage">
       {data.loading && (
-        <Modal>
+        <Modal superModal>
           {' '}
-          <div>Cargando...</div>
+          <Spinner />
+        </Modal>
+      )}
+      {view && (
+        <Modal>
+          <div className="cartpage__modal">
+            <Close handleClick={handleViewListPayer} />
+            <ArticleFooter modal={modal} pasarela />
+            <div className="cartpage__buyss">
+              <span
+                onClick={handleBuyMercadoPago}
+                className="cartpage__mercadopago"
+              >
+                Realizar peticion de pago con Mercado Pago
+              </span>
+              {message && <div className="cartpage__message">{message}</div>}
+            </div>
+            <div className="cartpage__preferences">
+              {preferenceId && (
+                <div className="cartpage__mercadopago--buy" onClick={cleanCart}>
+                  <Wallet
+                    onReady={() => {
+                      console.log('LIST');
+                    }}
+                    // onSubmit={async()=>{console.log('QUE ES')}}
+                    onBinChange={() => {
+                      console.log('HOLAX');
+                    }}
+                    onError={(x) => {
+                      console.log('err');
+                    }}
+                    initialization={{
+                      preferenceId,
+                      redirectMode: 'modal',
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </Modal>
       )}
       <div className="cartpage__page">
@@ -107,12 +163,13 @@ export default function CartPage() {
                   <h3>Total </h3>
                   <PriceCart />
                 </div>
-                <button className="cartpage__end" onClick={handleBuy}>
+                <button className="cartpage__end" onClick={handleViewListPayer}>
                   Finalizar Compra
                 </button>
-                <span className="cartpage__results">
+
+                {/* <span className="cartpage__results">
                   {data.data?.mercadoPago ? 'Compra realizada con exito' : ''}
-                </span>
+                </span> */}
               </div>
               <div className="cartpage__quotes">
                 <TableQuotes quotes={mapQuote} />

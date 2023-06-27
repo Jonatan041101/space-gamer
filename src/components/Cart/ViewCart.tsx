@@ -1,7 +1,5 @@
-import { useBearStore } from '@/store/store';
 import React from 'react';
 import PriceCart from './PriceCart';
-import Link from 'next/link';
 import LinkCart from './LinkCart';
 
 export default function ViewCart() {

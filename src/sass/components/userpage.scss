@@ -8,7 +8,7 @@
     padding: 1.4em 1em;
     max-width: 480px;
     @include flex(column, nowrap, flex-start, flex-start, 1em);
-    height: 513px;
+    height: 530.48px;
     @include responsive(1030px) {
       height: auto;
     }
@@ -28,7 +28,14 @@
     padding: 1.4em 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.8em;
+    position: relative;
+  }
+  &__error {
+    position: absolute;
+    color: $color-error;
+    bottom: 0;
+    font-weight: bold;
   }
   &__inputs {
     @include flex(row, nowrap, flex-start, flex-start, 1em);

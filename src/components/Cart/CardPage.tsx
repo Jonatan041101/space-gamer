@@ -54,7 +54,7 @@ export default function CardPage({ product }: Props) {
     }
   };
   return (
-    <tr className="cartpage__article cartpage__tr" key={product.product?.id}>
+    <tr className="cartpage__article cartpage__tr">
       <td className="cartpage__img cartpage__td">
         <div>
           <Image

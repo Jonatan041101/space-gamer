@@ -10,6 +10,7 @@ import Link from 'next/link';
 export interface ListMenu {
   id: number;
   name: string;
+  brand: boolean;
   dates: CategoryBrand[];
 }
 export default function NavBar() {
@@ -20,8 +21,18 @@ export default function NavBar() {
     setViewList(!viewList);
   };
   const list: ListMenu[] = [
-    { id: 2000, dates: data?.category as CategoryBrand[], name: 'Productos' },
-    { id: 2001, dates: brand?.brand as CategoryBrand[], name: 'Marcas' },
+    {
+      id: 2000,
+      dates: data?.category as CategoryBrand[],
+      name: 'Productos',
+      brand: false,
+    },
+    {
+      id: 2001,
+      dates: brand?.brand as CategoryBrand[],
+      name: 'Marcas',
+      brand: true,
+    },
   ];
   return (
     <>
@@ -46,7 +57,7 @@ export default function NavBar() {
                 {list.map((li) => (
                   <List key={li.id} data={li} />
                 ))}
-                <Link href={'/'} className="menu__h4">
+                <Link href={'/arma'} className="menu__h4">
                   Arma tu Pc
                 </Link>
               </div>

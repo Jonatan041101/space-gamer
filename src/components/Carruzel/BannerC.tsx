@@ -1,6 +1,6 @@
 import { Banner } from '@/__generated__/graphql-types';
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 interface Props {
   img: Banner;

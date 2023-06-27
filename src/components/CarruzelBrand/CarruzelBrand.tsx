@@ -3,9 +3,8 @@ import useBrand from '@/hooks/useBrand';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useBearStore } from '@/store/store';
-import { handleAddStrUrl } from '../ListProducts';
 import { useRouter } from 'next/navigation';
+import useLinksFilter from '@/hooks/useLinksFilter';
 const MAX_WIDTH = 1170;
 const MIN_TRANSLATE = 1556;
 export default function CarruzelBrand() {
@@ -14,9 +13,8 @@ export default function CarruzelBrand() {
   const [translate, setTranslate] = useState<number>(MIN_TRANSLATE);
   const [repeat, setRepeat] = useState<boolean>(false);
   const refCarruzel = useRef<HTMLDivElement | null>(null);
-  const { handleAddHistoryLink, handleFilterCB } = useBearStore(
-    (state) => state
-  );
+  const { filterProductsWithLink } = useLinksFilter();
+
   useEffect(() => {
     const handleTranslate = () => {
       if (refCarruzel.current) {
@@ -39,12 +37,11 @@ export default function CarruzelBrand() {
     };
   }, [repeat]);
 
-  const handleFilter = (name: string, image: string) => {
-    const allLinks = handleAddStrUrl(name);
+  const handleFilter = async (name: string, image: string) => {
     router.push('/products');
-    handleAddHistoryLink(allLinks);
+    // const allLinks = handleAddStrUrl(name, true); //TODO cambiar a false quizas
     if (image) {
-      handleFilterCB(null, null, name, image, null);
+      await filterProductsWithLink(name, null, image);
     }
   };
   return (
